@@ -1,13 +1,14 @@
-import { task } from 'hardhat/config';
 import { ConfigNames, loadPoolConfig } from '../../helpers/configuration';
+import { eEthereumNetwork, eNetwork, ePolygonNetwork, eXDaiNetwork } from '../../helpers/types';
 import {
   getAaveProtocolDataProvider,
   getLendingPoolAddressesProvider,
   getLendingPoolAddressesProviderRegistry,
 } from '../../helpers/contracts-getters';
-import { getParamPerNetwork } from '../../helpers/contracts-helpers';
+
 import { DRE } from '../../helpers/misc-utils';
-import { eEthereumNetwork, eNetwork, ePolygonNetwork, eXDaiNetwork } from '../../helpers/types';
+import { getParamPerNetwork } from '../../helpers/contracts-helpers';
+import { task } from 'hardhat/config';
 
 task('print-config', 'Inits the DRE, to have access to all the plugins')
   .addParam('dataProvider', 'Address of AaveProtocolDataProvider')

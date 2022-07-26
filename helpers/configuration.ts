@@ -23,7 +23,7 @@ export enum ConfigNames {
   Aave = 'Aave',
   Matic = 'Matic',
   Amm = 'Amm',
-  Avalanche = 'Avalanche'
+  Avalanche = 'Avalanche',
 }
 
 export const loadPoolConfig = (configName: ConfigNames): PoolConfiguration => {
@@ -34,8 +34,8 @@ export const loadPoolConfig = (configName: ConfigNames): PoolConfiguration => {
       return MaticConfig;
     case ConfigNames.Amm:
       return AmmConfig;
-      case ConfigNames.Avalanche:
-        return AvalancheConfig;
+    case ConfigNames.Avalanche:
+      return AvalancheConfig;
     case ConfigNames.Commons:
       return CommonsConfig;
     default:
@@ -65,7 +65,7 @@ export const getReservesConfigByPool = (pool: AavePools): iMultiPoolsAssets<IRes
       },
       [AavePools.avalanche]: {
         ...AvalancheConfig.ReservesConfig,
-      }
+      },
     },
     pool
   );
@@ -150,6 +150,8 @@ export const getQuoteCurrency = async (config: IBaseConfiguration) => {
       return getWethAddress(config);
     case 'USD':
       return config.ProtocolGlobalParams.UsdAddress;
+    case 'FTM':
+      return '0x7f0D8bB948bc68a2c1BC2fd2933b7986db67Fd73';
     default:
       throw `Quote ${config.OracleQuoteCurrency} currency not set. Add a new case to getQuoteCurrency switch`;
   }

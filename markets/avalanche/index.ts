@@ -1,15 +1,15 @@
-import { eAvalancheNetwork, IAvalancheConfiguration } from '../../helpers/types';
-
-import { CommonsConfig } from './commons';
+import { IAvalancheConfiguration, eAvalancheNetwork } from '../../helpers/types';
 import {
-  strategyWETH,
+  strategyAAVE,
   strategyDAI,
   strategyUSDC,
   strategyUSDT,
-  strategyAAVE,
-  strategyWBTC,
   strategyWAVAX,
+  strategyWBTC,
+  strategyWETH,
 } from './reservesConfigs';
+
+import { CommonsConfig } from './commons';
 
 // ----------------
 // POOL--SPECIFIC PARAMS
@@ -20,13 +20,7 @@ export const AvalancheConfig: IAvalancheConfiguration = {
   MarketId: 'Avalanche market',
   ProviderId: 4,
   ReservesConfig: {
-    WETH: strategyWETH,
     DAI: strategyDAI,
-    USDT: strategyUSDT,
-    USDC: strategyUSDC,
-    AAVE: strategyAAVE,
-    WBTC: strategyWBTC,
-    WAVAX: strategyWAVAX,
   },
   ReserveAssets: {
     [eAvalancheNetwork.avalanche]: {

@@ -1,8 +1,10 @@
 // @ts-ignore
 import { HardhatNetworkForkingUserConfig, HardhatUserConfig } from 'hardhat/types';
 import {
+  eArbitrumNetwork,
   eAvalancheNetwork,
   eEthereumNetwork,
+  eFantomNetwork,
   ePolygonNetwork,
   eXDaiNetwork,
   iParamsPerNetwork,
@@ -55,6 +57,8 @@ export const NETWORKS_RPC_URL: iParamsPerNetwork<string> = {
   [eXDaiNetwork.xdai]: 'https://rpc.xdaichain.com/',
   [eAvalancheNetwork.avalanche]: 'https://api.avax.network/ext/bc/C/rpc',
   [eAvalancheNetwork.fuji]: 'https://api.avax-test.network/ext/bc/C/rpc',
+  [eFantomNetwork.fantom]: 'https://rpc.ankr.com/fantom/',
+  [eArbitrumNetwork.arbitrum]: 'https://arb1.arbitrum.io/rpc',
 };
 
 export const NETWORKS_DEFAULT_GAS: iParamsPerNetwork<number> = {
@@ -70,6 +74,8 @@ export const NETWORKS_DEFAULT_GAS: iParamsPerNetwork<number> = {
   [eXDaiNetwork.xdai]: 1 * GWEI,
   [eAvalancheNetwork.avalanche]: 225 * GWEI,
   [eAvalancheNetwork.fuji]: 85 * GWEI,
+  [eFantomNetwork.fantom]: 100 * GWEI,
+  [eArbitrumNetwork.arbitrum]: 1 * GWEI,
 };
 
 export const BLOCK_TO_FORK: iParamsPerNetwork<number | undefined> = {
@@ -85,4 +91,5 @@ export const BLOCK_TO_FORK: iParamsPerNetwork<number | undefined> = {
   [eXDaiNetwork.xdai]: undefined,
   [eAvalancheNetwork.avalanche]: undefined,
   [eAvalancheNetwork.fuji]: undefined,
+  [eArbitrumNetwork.arbitrum]: undefined,
 };

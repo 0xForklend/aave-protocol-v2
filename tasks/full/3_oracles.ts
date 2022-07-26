@@ -44,7 +44,7 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
 
       const tokensToWatch: SymbolMap<string> = {
         ...reserveAssets,
-        USD: UsdAddress,
+        // USD: UsdAddress,
       };
       const [tokens, aggregators] = getPairsTokenAggregator(
         tokensToWatch,
@@ -54,6 +54,8 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
 
       let aaveOracle: AaveOracle;
       let lendingRateOracle: LendingRateOracle;
+
+      console.log('tokens, aggregators', tokens, aggregators);
 
       if (notFalsyOrZeroAddress(aaveOracleAddress)) {
         aaveOracle = await await getAaveOracle(aaveOracleAddress);

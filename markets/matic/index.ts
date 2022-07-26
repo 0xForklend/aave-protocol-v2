@@ -1,15 +1,15 @@
 import { IMaticConfiguration, ePolygonNetwork } from '../../helpers/types';
-
-import { CommonsConfig } from './commons';
 import {
+  strategyAAVE,
   strategyDAI,
+  strategyMATIC,
   strategyUSDC,
   strategyUSDT,
   strategyWBTC,
   strategyWETH,
-  strategyMATIC,
-  strategyAAVE,
 } from './reservesConfigs';
+
+import { CommonsConfig } from './commons';
 
 // ----------------
 // POOL--SPECIFIC PARAMS
@@ -21,12 +21,6 @@ export const MaticConfig: IMaticConfiguration = {
   ProviderId: 3,
   ReservesConfig: {
     DAI: strategyDAI,
-    USDC: strategyUSDC,
-    USDT: strategyUSDT,
-    WBTC: strategyWBTC,
-    WETH: strategyWETH,
-    WMATIC: strategyMATIC,
-    AAVE: strategyAAVE,
   },
   ReserveAssets: {
     [ePolygonNetwork.matic]: {

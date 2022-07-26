@@ -1,9 +1,10 @@
 import {
-  AaveProtocolDataProviderFactory,
   ATokenFactory,
   ATokensAndRatesHelperFactory,
   AaveOracleFactory,
+  AaveProtocolDataProviderFactory,
   DefaultReserveInterestRateStrategyFactory,
+  FlashLiquidationAdapterFactory,
   GenericLogicFactory,
   InitializableAdminUpgradeabilityProxyFactory,
   LendingPoolAddressesProviderFactory,
@@ -15,11 +16,11 @@ import {
   MintableERC20Factory,
   MockATokenFactory,
   MockFlashLoanReceiverFactory,
-  MockStableDebtTokenFactory,
-  MockVariableDebtTokenFactory,
-  MockUniswapV2Router02Factory,
   MockParaSwapAugustusFactory,
   MockParaSwapAugustusRegistryFactory,
+  MockStableDebtTokenFactory,
+  MockUniswapV2Router02Factory,
+  MockVariableDebtTokenFactory,
   ParaSwapLiquiditySwapAdapterFactory,
   PriceOracleFactory,
   ReserveLogicFactory,
@@ -29,15 +30,15 @@ import {
   UniswapLiquiditySwapAdapterFactory,
   UniswapRepayAdapterFactory,
   VariableDebtTokenFactory,
-  WalletBalanceProviderFactory,
   WETH9MockedFactory,
   WETHGatewayFactory,
-  FlashLiquidationAdapterFactory,
+  WalletBalanceProviderFactory,
 } from '../types';
-import { IERC20DetailedFactory } from '../types/IERC20DetailedFactory';
-import { getEthersSigners, MockTokenMap } from './contracts-helpers';
 import { DRE, getDb, notFalsyOrZeroAddress, omit } from './misc-utils';
-import { eContractid, PoolConfiguration, tEthereumAddress, TokenContractId } from './types';
+import { MockTokenMap, getEthersSigners } from './contracts-helpers';
+import { PoolConfiguration, TokenContractId, eContractid, tEthereumAddress } from './types';
+
+import { IERC20DetailedFactory } from '../types/IERC20DetailedFactory';
 
 export const getFirstSigner = async () => (await getEthersSigners())[0];
 
@@ -210,11 +211,14 @@ export const getPairsTokenAggregator = (
     getQuoteCurrencies(oracleQuoteCurrency)
   );
 
+  console.log('assetsWithoutQuoteCurrency', assetsWithoutQuoteCurrency, aggregatorsAddresses);
+
   const pairs = Object.entries(assetsWithoutQuoteCurrency).map(([tokenSymbol, tokenAddress]) => {
     //if (true/*tokenSymbol !== 'WETH' && tokenSymbol !== 'ETH' && tokenSymbol !== 'LpWETH'*/) {
     const aggregatorAddressIndex = Object.keys(aggregatorsAddresses).findIndex(
       (value) => value === tokenSymbol
     );
+    console.log('aggregatorAddressIndex', aggregatorAddressIndex);
     const [, aggregatorAddress] = (
       Object.entries(aggregatorsAddresses) as [string, tEthereumAddress][]
     )[aggregatorAddressIndex];
@@ -424,23 +428,26 @@ export const getFlashLiquidationAdapter = async (address?: tEthereumAddress) =>
 export const getMockParaSwapAugustus = async (address?: tEthereumAddress) =>
   await MockParaSwapAugustusFactory.connect(
     address ||
-      (await getDb().get(`${eContractid.MockParaSwapAugustus}.${DRE.network.name}`).value())
-        .address,
+      (
+        await getDb().get(`${eContractid.MockParaSwapAugustus}.${DRE.network.name}`).value()
+      ).address,
     await getFirstSigner()
   );
 
 export const getMockParaSwapAugustusRegistry = async (address?: tEthereumAddress) =>
   await MockParaSwapAugustusRegistryFactory.connect(
     address ||
-      (await getDb().get(`${eContractid.MockParaSwapAugustusRegistry}.${DRE.network.name}`).value())
-        .address,
+      (
+        await getDb().get(`${eContractid.MockParaSwapAugustusRegistry}.${DRE.network.name}`).value()
+      ).address,
     await getFirstSigner()
   );
 
 export const getParaSwapLiquiditySwapAdapter = async (address?: tEthereumAddress) =>
   await ParaSwapLiquiditySwapAdapterFactory.connect(
     address ||
-      (await getDb().get(`${eContractid.ParaSwapLiquiditySwapAdapter}.${DRE.network.name}`).value())
-        .address,
+      (
+        await getDb().get(`${eContractid.ParaSwapLiquiditySwapAdapter}.${DRE.network.name}`).value()
+      ).address,
     await getFirstSigner()
   );

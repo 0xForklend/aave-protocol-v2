@@ -1,15 +1,14 @@
-import { eContractid, IReserveParams } from '../../helpers/types';
-
+import { IReserveParams, eContractid } from '../../helpers/types';
 import {
-  rateStrategyStableOne,
-  rateStrategyStableTwo,
-  rateStrategyStableThree,
-  rateStrategyWETH,
   rateStrategyAAVE,
-  rateStrategyVolatileOne,
-  rateStrategyVolatileTwo,
-  rateStrategyVolatileThree,
+  rateStrategyStableOne,
+  rateStrategyStableThree,
+  rateStrategyStableTwo,
   rateStrategyVolatileFour,
+  rateStrategyVolatileOne,
+  rateStrategyVolatileThree,
+  rateStrategyVolatileTwo,
+  rateStrategyWETH,
 } from './rateStrategies';
 
 export const strategyBUSD: IReserveParams = {
@@ -254,6 +253,44 @@ export const strategyZRX: IReserveParams = {
 };
 
 export const strategyXSUSHI: IReserveParams = {
+  strategy: rateStrategyVolatileFour,
+  baseLTVAsCollateral: '2500',
+  liquidationThreshold: '4500',
+  liquidationBonus: '11500',
+  borrowingEnabled: true,
+  stableBorrowRateEnabled: false,
+  reserveDecimals: '18',
+  aTokenImpl: eContractid.AToken,
+  reserveFactor: '3500',
+};
+
+// ==========================================================================================
+
+export const strategyFRAX: IReserveParams = {
+  strategy: rateStrategyVolatileFour,
+  baseLTVAsCollateral: '2500',
+  liquidationThreshold: '4500',
+  liquidationBonus: '11500',
+  borrowingEnabled: true,
+  stableBorrowRateEnabled: false,
+  reserveDecimals: '18',
+  aTokenImpl: eContractid.AToken,
+  reserveFactor: '3500',
+};
+
+export const strategyWFTM: IReserveParams = {
+  strategy: rateStrategyWETH,
+  baseLTVAsCollateral: '8000',
+  liquidationThreshold: '8250',
+  liquidationBonus: '10500',
+  borrowingEnabled: true,
+  stableBorrowRateEnabled: true,
+  reserveDecimals: '18',
+  aTokenImpl: eContractid.AToken,
+  reserveFactor: '1000',
+};
+
+export const strategySPELL: IReserveParams = {
   strategy: rateStrategyVolatileFour,
   baseLTVAsCollateral: '2500',
   liquidationThreshold: '4500',

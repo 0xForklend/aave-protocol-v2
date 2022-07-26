@@ -74,6 +74,14 @@ export const MOCK_CHAINLINK_AGGREGATORS_PRICES = {
   xSUSHI: oneEther.multipliedBy('0.00913428586').toFixed(),
   WAVAX: oneEther.multipliedBy('0.006051936629').toFixed(),
   USD: '5848466240000000',
+
+  // DAI: oneEther.multipliedBy('0.00369068412860').toFixed(),
+  // USDC: oneEther.multipliedBy('0.00367714136416').toFixed(),
+  FRAX: oneEther.multipliedBy('0.00367714136416').toFixed(),
+  WFTM: oneEther.multipliedBy('0.00367714136416').toFixed(),
+  // WETH: oneEther.toFixed(),
+  // WBTC: oneEther.multipliedBy('47.332685').toFixed(),
+  SPELL: oneEther.multipliedBy('0.00367714136416').toFixed(),
 };
 
 export const chainlinkAggregatorProxy = {

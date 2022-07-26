@@ -1,25 +1,3 @@
-import path from 'path';
-import fs from 'fs';
-import { HardhatUserConfig } from 'hardhat/types';
-// @ts-ignore
-import { accounts } from './test-wallets.js';
-import {
-  eAvalancheNetwork,
-  eEthereumNetwork,
-  eNetwork,
-  ePolygonNetwork,
-  eXDaiNetwork,
-} from './helpers/types';
-import { BUIDLEREVM_CHAINID, COVERAGE_CHAINID } from './helpers/buidler-constants';
-import {
-  NETWORKS_RPC_URL,
-  NETWORKS_DEFAULT_GAS,
-  BLOCK_TO_FORK,
-  buildForkConfig,
-} from './helper-hardhat-config';
-
-require('dotenv').config();
-
 import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-waffle';
 import 'temp-hardhat-etherscan';
@@ -27,7 +5,34 @@ import 'hardhat-gas-reporter';
 import 'hardhat-typechain';
 import '@tenderly/hardhat-tenderly';
 import 'solidity-coverage';
+
+import {
+  BLOCK_TO_FORK,
+  NETWORKS_DEFAULT_GAS,
+  NETWORKS_RPC_URL,
+  buildForkConfig,
+} from './helper-hardhat-config';
+import { BUIDLEREVM_CHAINID, COVERAGE_CHAINID } from './helpers/buidler-constants';
+import {
+  eArbitrumNetwork,
+  eAvalancheNetwork,
+  eEthereumNetwork,
+  eFantomNetwork,
+  eNetwork,
+  ePolygonNetwork,
+  eXDaiNetwork,
+} from './helpers/types';
+
+import { HardhatUserConfig } from 'hardhat/types';
+// @ts-ignore
+import { accounts } from './test-wallets.js';
+import { ethers } from 'ethers';
 import { fork } from 'child_process';
+import fs from 'fs';
+import path from 'path';
+
+require('dotenv').config();
+
 
 const SKIP_LOAD = process.env.SKIP_LOAD === 'true';
 const DEFAULT_BLOCK_GAS_LIMIT = 8000000;
@@ -61,14 +66,9 @@ const getCommonNetworkConfig = (networkName: eNetwork, networkId: number) => ({
   gasMultiplier: DEFAULT_GAS_MUL,
   gasPrice: NETWORKS_DEFAULT_GAS[networkName],
   chainId: networkId,
-  accounts: {
-    mnemonic: MNEMONIC,
-    path: MNEMONIC_PATH,
-    initialIndex: 0,
-    count: 20,
-  },
+  accounts: process.env.PRIVATE_KEYS !== undefined ? process.env.PRIVATE_KEYS.split(",") : [],
 });
-
+ 
 let forkMode;
 
 const buidlerConfig: HardhatUserConfig = {
@@ -99,6 +99,13 @@ const buidlerConfig: HardhatUserConfig = {
       url: 'http://localhost:8555',
       chainId: COVERAGE_CHAINID,
     },
+    fantom: getCommonNetworkConfig(eFantomNetwork.fantom, 250),
+    ftmTestnet: {
+      url: "https://rpc.testnet.fantom.network/",
+      chainId: 0xfa2,
+      accounts: process.env.PRIVATE_KEYS !== undefined ? process.env.PRIVATE_KEYS.split(",") : [],
+    },
+    arbitrum: getCommonNetworkConfig(eArbitrumNetwork.arbitrum, 42161),
     kovan: getCommonNetworkConfig(eEthereumNetwork.kovan, 42),
     ropsten: getCommonNetworkConfig(eEthereumNetwork.ropsten, 3),
     main: getCommonNetworkConfig(eEthereumNetwork.main, 1),

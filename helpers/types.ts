@@ -4,7 +4,13 @@ export interface SymbolMap<T> {
   [symbol: string]: T;
 }
 
-export type eNetwork = eEthereumNetwork | ePolygonNetwork | eXDaiNetwork | eAvalancheNetwork;
+export type eNetwork =
+  | eEthereumNetwork
+  | ePolygonNetwork
+  | eXDaiNetwork
+  | eAvalancheNetwork
+  | eFantomNetwork
+  | eArbitrumNetwork;
 
 export enum eEthereumNetwork {
   buidlerevm = 'buidlerevm',
@@ -28,6 +34,15 @@ export enum eXDaiNetwork {
 export enum eAvalancheNetwork {
   avalanche = 'avalanche',
   fuji = 'fuji',
+}
+
+export enum eFantomNetwork {
+  fantom = 'fantom',
+  ftmTestnet = 'ftmTestnet',
+}
+
+export enum eArbitrumNetwork {
+  arbitrum = 'arbitrum',
 }
 
 export enum EthereumNetworkNames {
@@ -255,6 +270,14 @@ export interface iAssetBase<T> {
   STAKE: T;
   xSUSHI: T;
   WAVAX: T;
+  //
+  // DAI: T,
+  // USDC: T,
+  FRAX: T;
+  WFTM: T;
+  // WETH: T,
+  // WBTC: T,
+  SPELL: T;
 }
 
 export type iAssetsWithoutETH<T> = Omit<iAssetBase<T>, 'ETH'>;
@@ -263,68 +286,16 @@ export type iAssetsWithoutUSD<T> = Omit<iAssetBase<T>, 'USD'>;
 
 export type iAavePoolAssets<T> = Pick<
   iAssetsWithoutUSD<T>,
-  | 'DAI'
-  | 'TUSD'
-  | 'USDC'
-  | 'USDT'
-  | 'SUSD'
-  | 'AAVE'
-  | 'BAT'
-  | 'MKR'
-  | 'LINK'
-  | 'KNC'
-  | 'WBTC'
-  | 'MANA'
-  | 'ZRX'
-  | 'SNX'
-  | 'BUSD'
-  | 'WETH'
-  | 'YFI'
-  | 'UNI'
-  | 'REN'
-  | 'ENJ'
-  | 'xSUSHI'
+  'DAI' | 'USDC' | 'FRAX' | 'WFTM' | 'WETH' | 'WBTC' | 'SPELL'
 >;
 
-export type iLpPoolAssets<T> = Pick<
-  iAssetsWithoutUSD<T>,
-  | 'DAI'
-  | 'USDC'
-  | 'USDT'
-  | 'WBTC'
-  | 'WETH'
-  | 'UniDAIWETH'
-  | 'UniWBTCWETH'
-  | 'UniAAVEWETH'
-  | 'UniBATWETH'
-  | 'UniDAIUSDC'
-  | 'UniCRVWETH'
-  | 'UniLINKWETH'
-  | 'UniMKRWETH'
-  | 'UniRENWETH'
-  | 'UniSNXWETH'
-  | 'UniUNIWETH'
-  | 'UniUSDCWETH'
-  | 'UniWBTCUSDC'
-  | 'UniYFIWETH'
-  | 'BptWBTCWETH'
-  | 'BptBALWETH'
->;
+export type iLpPoolAssets<T> = Pick<iAssetsWithoutUSD<T>, 'DAI'>;
 
-export type iMaticPoolAssets<T> = Pick<
-  iAssetsWithoutUSD<T>,
-  'DAI' | 'USDC' | 'USDT' | 'WBTC' | 'WETH' | 'WMATIC' | 'AAVE'
->;
+export type iMaticPoolAssets<T> = Pick<iAssetsWithoutUSD<T>, 'DAI'>;
 
-export type iXDAIPoolAssets<T> = Pick<
-  iAssetsWithoutUSD<T>,
-  'DAI' | 'USDC' | 'USDT' | 'WBTC' | 'WETH' | 'STAKE'
->;
+export type iXDAIPoolAssets<T> = Pick<iAssetsWithoutUSD<T>, 'DAI'>;
 
-export type iAvalanchePoolAssets<T> = Pick<
-  iAssetsWithoutUSD<T>,
-  'WETH' | 'DAI' | 'USDT' | 'AAVE' | 'WBTC' | 'WAVAX' | 'USDC'
->;
+export type iAvalanchePoolAssets<T> = Pick<iAssetsWithoutUSD<T>, 'DAI'>;
 
 export type iMultiPoolsAssets<T> = iAssetCommon<T> | iAavePoolAssets<T>;
 
@@ -333,17 +304,13 @@ export type iAavePoolTokens<T> = Omit<iAavePoolAssets<T>, 'ETH'>;
 export type iAssetAggregatorBase<T> = iAssetsWithoutETH<T>;
 
 export enum TokenContractId {
-  DAI = 'DAI',
   AAVE = 'AAVE',
   TUSD = 'TUSD',
   BAT = 'BAT',
-  WETH = 'WETH',
-  USDC = 'USDC',
   USDT = 'USDT',
   SUSD = 'SUSD',
   ZRX = 'ZRX',
   MKR = 'MKR',
-  WBTC = 'WBTC',
   LINK = 'LINK',
   KNC = 'KNC',
   MANA = 'MANA',
@@ -374,6 +341,10 @@ export enum TokenContractId {
   STAKE = 'STAKE',
   xSUSHI = 'xSUSHI',
   WAVAX = 'WAVAX',
+  // New Assets
+  FRAX = 'FRAX',
+  WFTM = 'WFTM',
+  SPELL = 'SPELL',
 }
 
 export interface IReserveParams extends IReserveBorrowParams, IReserveCollateralParams {
@@ -417,12 +388,16 @@ export type iParamsPerNetwork<T> =
   | iEthereumParamsPerNetwork<T>
   | iPolygonParamsPerNetwork<T>
   | iXDaiParamsPerNetwork<T>
-  | iAvalancheParamsPerNetwork<T>;
+  | iAvalancheParamsPerNetwork<T>
+  | iFantomParamsPerNetwork<T>
+  | iArbitrumParamsPerNetwork<T>;
 
 export interface iParamsPerNetworkAll<T>
   extends iEthereumParamsPerNetwork<T>,
     iPolygonParamsPerNetwork<T>,
-    iXDaiParamsPerNetwork<T> {}
+    iXDaiParamsPerNetwork<T>,
+    iFantomParamsPerNetwork<T>,
+    iArbitrumParamsPerNetwork<T> {}
 
 export interface iEthereumParamsPerNetwork<T> {
   [eEthereumNetwork.coverage]: T;
@@ -446,6 +421,15 @@ export interface iXDaiParamsPerNetwork<T> {
 export interface iAvalancheParamsPerNetwork<T> {
   [eAvalancheNetwork.avalanche]: T;
   [eAvalancheNetwork.fuji]: T;
+}
+
+export interface iFantomParamsPerNetwork<T> {
+  [eFantomNetwork.fantom]: T;
+  [eFantomNetwork.ftmTestnet]: T;
+}
+
+export interface iArbitrumParamsPerNetwork<T> {
+  [eArbitrumNetwork.arbitrum]: T;
 }
 
 export interface iParamsPerPool<T> {
