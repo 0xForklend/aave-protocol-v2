@@ -57,7 +57,8 @@ export const NETWORKS_RPC_URL: iParamsPerNetwork<string> = {
   [eXDaiNetwork.xdai]: 'https://rpc.xdaichain.com/',
   [eAvalancheNetwork.avalanche]: 'https://api.avax.network/ext/bc/C/rpc',
   [eAvalancheNetwork.fuji]: 'https://api.avax-test.network/ext/bc/C/rpc',
-  [eFantomNetwork.fantom]: 'https://rpc.ankr.com/fantom/',
+  // [eFantomNetwork.fantom]: 'https://rpc.ankr.com/fantom',
+  [eFantomNetwork.fantom]: 'https://rpc2.fantom.network',
   [eArbitrumNetwork.arbitrum]: 'https://arb1.arbitrum.io/rpc',
 };
 
@@ -74,7 +75,7 @@ export const NETWORKS_DEFAULT_GAS: iParamsPerNetwork<number> = {
   [eXDaiNetwork.xdai]: 1 * GWEI,
   [eAvalancheNetwork.avalanche]: 225 * GWEI,
   [eAvalancheNetwork.fuji]: 85 * GWEI,
-  [eFantomNetwork.fantom]: 100 * GWEI,
+  [eFantomNetwork.fantom]: 10 * GWEI,
   [eArbitrumNetwork.arbitrum]: 1 * GWEI,
 };
 

@@ -22,6 +22,7 @@ import { getAllTokenAddresses } from '../../helpers/mock-helpers';
 import { ZERO_ADDRESS } from '../../helpers/constants';
 import {
   getAllMockedTokens,
+  getFirstSigner,
   getLendingPoolAddressesProvider,
   getWETHGateway,
 } from '../../helpers/contracts-getters';
@@ -32,6 +33,7 @@ task('dev:initialize-lending-pool', 'Initialize lending pool configuration.')
   .addParam('pool', `Pool name to retrieve configuration, supported: ${Object.values(ConfigNames)}`)
   .setAction(async ({ verify, pool }, localBRE) => {
     await localBRE.run('set-DRE');
+    const deployer = await getFirstSigner();
     const network = <eNetwork>localBRE.network.name;
     const poolConfig = loadPoolConfig(pool);
     const {
@@ -74,7 +76,9 @@ task('dev:initialize-lending-pool', 'Initialize lending pool configuration.')
 
     const collateralManager = await deployLendingPoolCollateralManager(verify);
     await waitForTx(
-      await addressesProvider.setLendingPoolCollateralManager(collateralManager.address)
+      await addressesProvider.setLendingPoolCollateralManager(collateralManager.address, {
+        nonce: await deployer.getTransactionCount('pending'),
+      })
     );
 
     const mockFlashLoanReceiver = await deployMockFlashLoanReceiver(

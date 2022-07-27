@@ -1,18 +1,18 @@
 import {
-  tEthereumAddress,
-  iMultiPoolsAssets,
   IMarketRates,
-  iAssetBase,
-  iAssetAggregatorBase,
   SymbolMap,
+  iAssetAggregatorBase,
+  iAssetBase,
+  iMultiPoolsAssets,
+  tEthereumAddress,
 } from './types';
+import { chunk, waitForTx } from './misc-utils';
+import { getFirstSigner, getStableAndVariableTokensHelper } from './contracts-getters';
 
 import { LendingRateOracle } from '../types/LendingRateOracle';
-import { PriceOracle } from '../types/PriceOracle';
 import { MockAggregator } from '../types/MockAggregator';
+import { PriceOracle } from '../types/PriceOracle';
 import { deployMockAggregator } from './contracts-deployments';
-import { chunk, waitForTx } from './misc-utils';
-import { getStableAndVariableTokensHelper } from './contracts-getters';
 
 export const setInitialMarketRatesInRatesOracleByHelper = async (
   marketRates: iMultiPoolsAssets<IMarketRates>,
@@ -20,6 +20,7 @@ export const setInitialMarketRatesInRatesOracleByHelper = async (
   lendingRateOracleInstance: LendingRateOracle,
   admin: tEthereumAddress
 ) => {
+  const deployer = await getFirstSigner();
   const stableAndVariableTokenHelper = await getStableAndVariableTokensHelper();
   const assetAddresses: string[] = [];
   const borrowRates: string[] = [];
@@ -46,7 +47,9 @@ export const setInitialMarketRatesInRatesOracleByHelper = async (
 
   // Set helper as owner
   await waitForTx(
-    await lendingRateOracleInstance.transferOwnership(stableAndVariableTokenHelper.address)
+    await lendingRateOracleInstance.transferOwnership(stableAndVariableTokenHelper.address, {
+      nonce: await deployer.getTransactionCount('pending'),
+    })
   );
 
   console.log(`- Oracle borrow initalization in ${chunkedTokens.length} txs`);
@@ -55,14 +58,23 @@ export const setInitialMarketRatesInRatesOracleByHelper = async (
       await stableAndVariableTokenHelper.setOracleBorrowRates(
         chunkedTokens[chunkIndex],
         chunkedRates[chunkIndex],
-        lendingRateOracleInstance.address
+        lendingRateOracleInstance.address,
+        {
+          nonce: await deployer.getTransactionCount('pending'),
+        }
       )
     );
     console.log(`  - Setted Oracle Borrow Rates for: ${chunkedSymbols[chunkIndex].join(', ')}`);
   }
   // Set back ownership
   await waitForTx(
-    await stableAndVariableTokenHelper.setOracleOwnership(lendingRateOracleInstance.address, admin)
+    await stableAndVariableTokenHelper.setOracleOwnership(
+      lendingRateOracleInstance.address,
+      admin,
+      {
+        nonce: await deployer.getTransactionCount('pending'),
+      }
+    )
   );
 };
 
@@ -71,6 +83,7 @@ export const setInitialAssetPricesInOracle = async (
   assetsAddresses: iAssetBase<tEthereumAddress>,
   priceOracleInstance: PriceOracle
 ) => {
+  const deployer = await getFirstSigner();
   for (const [assetSymbol, price] of Object.entries(prices) as [string, string][]) {
     const assetAddressIndex = Object.keys(assetsAddresses).findIndex(
       (value) => value === assetSymbol
@@ -78,7 +91,11 @@ export const setInitialAssetPricesInOracle = async (
     const [, assetAddress] = (Object.entries(assetsAddresses) as [string, string][])[
       assetAddressIndex
     ];
-    await waitForTx(await priceOracleInstance.setAssetPrice(assetAddress, price));
+    await waitForTx(
+      await priceOracleInstance.setAssetPrice(assetAddress, price, {
+        nonce: await deployer.getTransactionCount('pending'),
+      })
+    );
   }
 };
 
@@ -87,6 +104,7 @@ export const setAssetPricesInOracle = async (
   assetsAddresses: SymbolMap<tEthereumAddress>,
   priceOracleInstance: PriceOracle
 ) => {
+  const deployer = await getFirstSigner();
   for (const [assetSymbol, price] of Object.entries(prices) as [string, string][]) {
     const assetAddressIndex = Object.keys(assetsAddresses).findIndex(
       (value) => value === assetSymbol
@@ -94,7 +112,11 @@ export const setAssetPricesInOracle = async (
     const [, assetAddress] = (Object.entries(assetsAddresses) as [string, string][])[
       assetAddressIndex
     ];
-    await waitForTx(await priceOracleInstance.setAssetPrice(assetAddress, price));
+    await waitForTx(
+      await priceOracleInstance.setAssetPrice(assetAddress, price, {
+        nonce: await deployer.getTransactionCount('pending'),
+      })
+    );
   }
 };
 

@@ -9,6 +9,7 @@ import {
 } from '../../helpers/configuration';
 import { getParamPerNetwork } from '../../helpers/contracts-helpers';
 import { eNetwork } from '../../helpers/types';
+import { getFirstSigner } from '../../helpers/contracts-getters';
 
 task(
   'full:deploy-address-provider',
@@ -19,6 +20,7 @@ task(
   .addFlag('skipRegistry')
   .setAction(async ({ verify, pool, skipRegistry }, DRE) => {
     await DRE.run('set-DRE');
+    const deployer = await getFirstSigner();
     const poolConfig = loadPoolConfig(pool);
     const { MarketId } = poolConfig;
 
@@ -39,8 +41,16 @@ task(
       });
     }
     // 3. Set pool admins
-    await waitForTx(await addressesProvider.setPoolAdmin(await getGenesisPoolAdmin(poolConfig)));
-    await waitForTx(await addressesProvider.setEmergencyAdmin(await getEmergencyAdmin(poolConfig)));
+    await waitForTx(
+      await addressesProvider.setPoolAdmin(await getGenesisPoolAdmin(poolConfig), {
+        nonce: await deployer.getTransactionCount('pending'),
+      })
+    );
+    await waitForTx(
+      await addressesProvider.setEmergencyAdmin(await getEmergencyAdmin(poolConfig), {
+        nonce: await deployer.getTransactionCount('pending'),
+      })
+    );
 
     console.log('Pool Admin', await addressesProvider.getPoolAdmin());
     console.log('Emergency Admin', await addressesProvider.getEmergencyAdmin());

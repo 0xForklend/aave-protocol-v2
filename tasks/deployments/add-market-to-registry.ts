@@ -20,6 +20,7 @@ task('add-market-to-registry', 'Adds address provider to registry')
   .addFlag('deployRegistry', 'Deploy a new address provider registry')
   .setAction(async ({ verify, addressesProvider, pool, deployRegistry }, DRE) => {
     await DRE.run('set-DRE');
+    const deployer = await getFirstSigner();
     let signer: Signer;
     const network = <eNetwork>DRE.network.name;
     const poolConfig = loadPoolConfig(pool);
@@ -87,7 +88,10 @@ task('add-market-to-registry', 'Adds address provider to registry')
     await waitForTx(
       await addressesProviderRegistry.registerAddressesProvider(
         addressesProviderInstance.address,
-        ProviderId
+        ProviderId,
+        {
+          nonce: await deployer.getTransactionCount('pending'),
+        }
       )
     );
     console.log(

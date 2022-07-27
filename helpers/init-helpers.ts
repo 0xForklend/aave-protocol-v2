@@ -1,15 +1,15 @@
 import {
+  IReserveParams,
   eContractid,
   eNetwork,
   iMultiPoolsAssets,
-  IReserveParams,
   tEthereumAddress,
 } from './types';
-import { AaveProtocolDataProvider } from '../types/AaveProtocolDataProvider';
 import { chunk, getDb, waitForTx } from './misc-utils';
 import {
   getAToken,
   getATokensAndRatesHelper,
+  getFirstSigner,
   getLendingPoolAddressesProvider,
   getLendingPoolConfiguratorProxy,
 } from './contracts-getters';
@@ -17,6 +17,8 @@ import {
   getContractAddressWithJsonFallback,
   rawInsertContractAddressInDb,
 } from './contracts-helpers';
+
+import { AaveProtocolDataProvider } from '../types/AaveProtocolDataProvider';
 import { BigNumberish } from 'ethers';
 import { ConfigNames } from './configuration';
 import { deployRateStrategy } from './contracts-deployments';
@@ -195,6 +197,7 @@ export const configureReservesByHelper = async (
   helpers: AaveProtocolDataProvider,
   admin: tEthereumAddress
 ) => {
+  const deployer = await getFirstSigner();
   const addressProvider = await getLendingPoolAddressesProvider();
   const atokenAndRatesDeployer = await getATokensAndRatesHelper();
   const tokens: string[] = [];
@@ -260,7 +263,11 @@ export const configureReservesByHelper = async (
   }
   if (tokens.length) {
     // Set aTokenAndRatesDeployer as temporal admin
-    await waitForTx(await addressProvider.setPoolAdmin(atokenAndRatesDeployer.address));
+    await waitForTx(
+      await addressProvider.setPoolAdmin(atokenAndRatesDeployer.address, {
+        nonce: await deployer.getTransactionCount('pending'),
+      })
+    );
 
     // Deploy init per chunks
     const enableChunks = 20;
@@ -270,12 +277,18 @@ export const configureReservesByHelper = async (
     console.log(`- Configure reserves in ${chunkedInputParams.length} txs`);
     for (let chunkIndex = 0; chunkIndex < chunkedInputParams.length; chunkIndex++) {
       await waitForTx(
-        await atokenAndRatesDeployer.configureReserves(chunkedInputParams[chunkIndex])
+        await atokenAndRatesDeployer.configureReserves(chunkedInputParams[chunkIndex], {
+          nonce: await deployer.getTransactionCount('pending'),
+        })
       );
       console.log(`  - Init for: ${chunkedSymbols[chunkIndex].join(', ')}`);
     }
     // Set deployer back as admin
-    await waitForTx(await addressProvider.setPoolAdmin(admin));
+    await waitForTx(
+      await addressProvider.setPoolAdmin(admin, {
+        nonce: await deployer.getTransactionCount('pending'),
+      })
+    );
   }
 };
 

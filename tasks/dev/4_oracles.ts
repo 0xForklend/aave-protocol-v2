@@ -1,23 +1,25 @@
-import { task } from 'hardhat/config';
+import { ConfigNames, getQuoteCurrency, loadPoolConfig } from '../../helpers/configuration';
+import { ICommonConfiguration, TokenContractId, iAssetBase } from '../../helpers/types';
 import {
-  deployPriceOracle,
   deployAaveOracle,
   deployLendingRateOracle,
+  deployPriceOracle,
 } from '../../helpers/contracts-deployments';
 import {
-  setInitialAssetPricesInOracle,
   deployAllMockAggregators,
+  setInitialAssetPricesInOracle,
   setInitialMarketRatesInRatesOracleByHelper,
 } from '../../helpers/oracles-helpers';
-import { ICommonConfiguration, iAssetBase, TokenContractId } from '../../helpers/types';
-import { waitForTx } from '../../helpers/misc-utils';
 import { getAllAggregatorsAddresses, getAllTokenAddresses } from '../../helpers/mock-helpers';
-import { ConfigNames, loadPoolConfig, getQuoteCurrency } from '../../helpers/configuration';
 import {
   getAllMockedTokens,
+  getFirstSigner,
   getLendingPoolAddressesProvider,
   getPairsTokenAggregator,
 } from '../../helpers/contracts-getters';
+
+import { task } from 'hardhat/config';
+import { waitForTx } from '../../helpers/misc-utils';
 
 task('dev:deploy-oracles', 'Deploy oracles for dev environment')
   .addFlag('verify', 'Verify contracts at Etherscan')
@@ -37,6 +39,7 @@ task('dev:deploy-oracles', 'Deploy oracles for dev environment')
       ...Object.fromEntries(Object.keys(TokenContractId).map((symbol) => [symbol, ''])),
       USD: UsdAddress,
     } as iAssetBase<string>;
+    const deployer = await getFirstSigner();
     const mockTokens = await getAllMockedTokens();
     const mockTokensAddress = Object.keys(mockTokens).reduce<iAssetBase<string>>((prev, curr) => {
       prev[curr as keyof iAssetBase<string>] = mockTokens[curr].address;
@@ -46,7 +49,11 @@ task('dev:deploy-oracles', 'Deploy oracles for dev environment')
     const admin = await addressesProvider.getPoolAdmin();
 
     const fallbackOracle = await deployPriceOracle(verify);
-    await waitForTx(await fallbackOracle.setEthUsdPrice(MockUsdPriceInWei));
+    await waitForTx(
+      await fallbackOracle.setEthUsdPrice(MockUsdPriceInWei, {
+        nonce: await deployer.getTransactionCount('pending'),
+      })
+    );
     await setInitialAssetPricesInOracle(AllAssetsInitialPrices, mockTokensAddress, fallbackOracle);
 
     const mockAggregators = await deployAllMockAggregators(AllAssetsInitialPrices, verify);
@@ -70,10 +77,18 @@ task('dev:deploy-oracles', 'Deploy oracles for dev environment')
       ],
       verify
     );
-    await waitForTx(await addressesProvider.setPriceOracle(fallbackOracle.address));
+    await waitForTx(
+      await addressesProvider.setPriceOracle(fallbackOracle.address, {
+        nonce: await deployer.getTransactionCount('pending'),
+      })
+    );
 
     const lendingRateOracle = await deployLendingRateOracle(verify);
-    await waitForTx(await addressesProvider.setLendingRateOracle(lendingRateOracle.address));
+    await waitForTx(
+      await addressesProvider.setLendingRateOracle(lendingRateOracle.address, {
+        nonce: await deployer.getTransactionCount('pending'),
+      })
+    );
 
     const { USD, ...tokensAddressesWithoutUsd } = allTokenAddresses;
     const allReservesAddresses = {

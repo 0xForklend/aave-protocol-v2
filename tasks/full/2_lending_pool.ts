@@ -13,6 +13,7 @@ import {
   getLendingPoolAddressesProvider,
   getLendingPool,
   getLendingPoolConfiguratorProxy,
+  getFirstSigner,
 } from '../../helpers/contracts-getters';
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import {
@@ -29,7 +30,7 @@ task('full:deploy-lending-pool', 'Deploy lending pool for dev enviroment')
   .setAction(async ({ verify, pool }, DRE: HardhatRuntimeEnvironment) => {
     try {
       await DRE.run('set-DRE');
-      const [deployer] = await DRE.ethers.getSigners();
+      const deployer = await getFirstSigner();
       const network = <eNetwork>DRE.network.name;
       const poolConfig = loadPoolConfig(pool);
       const addressesProvider = await getLendingPoolAddressesProvider();
@@ -48,7 +49,8 @@ task('full:deploy-lending-pool', 'Deploy lending pool for dev enviroment')
       // Set lending pool impl to Address provider
       await waitForTx(
         await addressesProvider.setLendingPoolImpl(lendingPoolImplAddress, {
-          nonce: await deployer.getTransactionCount(),
+          nonce: await deployer.getTransactionCount('pending'),
+          gasPrice: 100 * 1000 * 1000 * 1000,
         })
       );
 
@@ -71,7 +73,7 @@ task('full:deploy-lending-pool', 'Deploy lending pool for dev enviroment')
       // Set lending pool conf impl to Address Provider
       await waitForTx(
         await addressesProvider.setLendingPoolConfiguratorImpl(lendingPoolConfiguratorImplAddress, {
-          nonce: await deployer.getTransactionCount(),
+          nonce: await deployer.getTransactionCount('pending'),
         })
       );
 
@@ -85,7 +87,11 @@ task('full:deploy-lending-pool', 'Deploy lending pool for dev enviroment')
       );
       const admin = await DRE.ethers.getSigner(await getEmergencyAdmin(poolConfig));
       // Pause market during deployment
-      await waitForTx(await lendingPoolConfiguratorProxy.connect(admin).setPoolPause(true));
+      await waitForTx(
+        await lendingPoolConfiguratorProxy.connect(admin).setPoolPause(true, {
+          nonce: await deployer.getTransactionCount('pending'),
+        })
+      );
 
       // Deploy deployment helpers
       await deployStableAndVariableTokensHelper(

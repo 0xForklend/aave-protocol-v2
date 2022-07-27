@@ -68,7 +68,7 @@ const getCommonNetworkConfig = (networkName: eNetwork, networkId: number) => ({
   chainId: networkId,
   accounts: process.env.PRIVATE_KEYS !== undefined ? process.env.PRIVATE_KEYS.split(",") : [],
 });
- 
+
 let forkMode;
 
 const buidlerConfig: HardhatUserConfig = {
@@ -99,12 +99,12 @@ const buidlerConfig: HardhatUserConfig = {
       url: 'http://localhost:8555',
       chainId: COVERAGE_CHAINID,
     },
-    fantom: getCommonNetworkConfig(eFantomNetwork.fantom, 250),
     ftmTestnet: {
       url: "https://rpc.testnet.fantom.network/",
       chainId: 0xfa2,
       accounts: process.env.PRIVATE_KEYS !== undefined ? process.env.PRIVATE_KEYS.split(",") : [],
     },
+    fantom: getCommonNetworkConfig(eFantomNetwork.fantom, 250),
     arbitrum: getCommonNetworkConfig(eArbitrumNetwork.arbitrum, 42161),
     kovan: getCommonNetworkConfig(eEthereumNetwork.kovan, 42),
     ropsten: getCommonNetworkConfig(eEthereumNetwork.ropsten, 3),

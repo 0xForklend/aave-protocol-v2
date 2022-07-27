@@ -43,6 +43,9 @@ import { IERC20DetailedFactory } from '../types/IERC20DetailedFactory';
 export const getFirstSigner = async () => (await getEthersSigners())[0];
 
 export const getLendingPoolAddressesProvider = async (address?: tEthereumAddress) => {
+  console.log(
+    `getLendingPoolAddressesProvider: ${eContractid.LendingPoolAddressesProvider}.${DRE.network.name}`
+  );
   return await LendingPoolAddressesProviderFactory.connect(
     address ||
       (
