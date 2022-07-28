@@ -1,0 +1,440 @@
+mihailkrukov@Mihails-MacBook-Pro aave-protocol-v2 % yarn aave:fantom:full:migration
+yarn run v1.22.17
+warning package.json: License should be a valid SPDX license expression
+$ npm run compile && npm run hardhat:fantom -- aave:mainnet --skip-registry
+
+> @aave/protocol-v2@1.0.1 compile
+> SKIP_LOAD=true hardhat compile
+
+Nothing to compile
+Creating Typechain artifacts in directory types for target ethers-v5
+Successfully generated Typechain artifacts!
+
+> @aave/protocol-v2@1.0.1 hardhat:fantom
+> hardhat --network fantom "aave:mainnet" "--skip-registry"
+
+- Enviroment
+  - Network : fantom
+Migration started
+
+1. Deploy address provider
+WaitForTx: 0x2fdfc6f5da952713e1f30d462bd60a5de02171cd9a4b8c301e708b17b572197c
+*** LendingPoolAddressesProvider ***
+
+Network: fantom
+tx: 0x2fdfc6f5da952713e1f30d462bd60a5de02171cd9a4b8c301e708b17b572197c
+contract address: 0x059A79Ac8235bdE2B8d57d6c0AEA9715D169F14f
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 1604832
+
+******
+
+WaitForTx: 0x2563e5b7c7b25fba56d11cca529412e99fab74d3e039d457d40ab54eb2e4aa30
+WaitForTx: 0x8e86a5e5b71c7bc4646057cc87f66892744bcf4b2123fb7763217f5e2193caf9
+Pool Admin 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+Emergency Admin 0x4a204b23bfc147c0cB0bCA135A25A2ABa767F7f7
+2. Deploy lending pool
+getLendingPoolAddressesProvider: LendingPoolAddressesProvider.fantom
+        Deploying new lending pool implementation & libraries...
+WaitForTx: 0x0fc163d2990094cfefea72597d021dae5d0d309e842c2b5fe09f1351e0af434d
+*** ReserveLogic ***
+
+Network: fantom
+tx: 0x0fc163d2990094cfefea72597d021dae5d0d309e842c2b5fe09f1351e0af434d
+contract address: 0x93Adbc8DeDBc22B03CbEa6E2Efb858B381be45f3
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 176603
+
+******
+
+WaitForTx: 0xac6c000f88a8a9d404f70ee00190e475976e6f0e12137aa1f96f25e6bf3900b3
+*** GenericLogic ***
+
+Network: fantom
+tx: 0xac6c000f88a8a9d404f70ee00190e475976e6f0e12137aa1f96f25e6bf3900b3
+contract address: 0x172aADFf2C5233f91531FCcb49C17CfaED70b1A3
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 855592
+
+******
+
+WaitForTx: 0x39ed950908ed53aec9d8f953d2d1e975c374871642a371989ffea90a97b36d75
+*** ValidationLogic ***
+
+Network: fantom
+tx: 0x39ed950908ed53aec9d8f953d2d1e975c374871642a371989ffea90a97b36d75
+contract address: 0x1576a37042d98BebeB226E15842B1aefaE85b735
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 1838521
+
+******
+
+WaitForTx: 0x856dbbaad50dae5d6641dfc24df6c70e832c7705344bc499bcdc7f4b740cd5d6
+*** LendingPool ***
+
+Network: fantom
+tx: 0x856dbbaad50dae5d6641dfc24df6c70e832c7705344bc499bcdc7f4b740cd5d6
+contract address: 0x4fFD9b78497C903761Cf68FAd5Ef8C32DCE8ECF7
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 4797736
+
+******
+
+        Setting lending pool implementation with address: 0x4fFD9b78497C903761Cf68FAd5Ef8C32DCE8ECF7
+WaitForTx: 0x39c38cac2ef5796ae2da852112385cfd3f84984cbe453ee025d894ffb0a190b7
+        Deploying new configurator implementation...
+WaitForTx: 0x546c5ddb0e26775ef2af11d0530b4ee4bbda0ff684d129b2bd09f4829934e425
+*** LendingPoolConfigurator ***
+
+Network: fantom
+tx: 0x546c5ddb0e26775ef2af11d0530b4ee4bbda0ff684d129b2bd09f4829934e425
+contract address: 0x8124757f377f1282ad608112De9724556A28c749
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 3484625
+
+******
+
+        Setting lending pool configurator implementation with address: 0x8124757f377f1282ad608112De9724556A28c749
+WaitForTx: 0x03eadf9a8ffb2a2a05b22f05d84795abbc34a8a49cbe7002c179575abae689fd
+WaitForTx: 0xe63d2a26f34cd9cff24c4acc02152ca60a7c69e7d9bebc8ee2090937174206d1
+WaitForTx: 0x87b7f60345963182aadcc4746ec40e0732775d5402495082f23e37b3935a4367
+*** StableAndVariableTokensHelper ***
+
+Network: fantom
+tx: 0x87b7f60345963182aadcc4746ec40e0732775d5402495082f23e37b3935a4367
+contract address: 0x8B0C488918B4F91Fa45C302dBaDc5125519Bdf74
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 3699874
+
+******
+
+WaitForTx: 0x5933d3aa93b4893b27f8712cd1539bf2f7a2b9a8f0b9b0299269f8f28c8afc52
+*** ATokensAndRatesHelper ***
+
+Network: fantom
+tx: 0x5933d3aa93b4893b27f8712cd1539bf2f7a2b9a8f0b9b0299269f8f28c8afc52
+contract address: 0x9b0f36CDBe530329743C7C7907c10dF35526e4a9
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 3792708
+
+******
+
+Deploying implementation AToken
+WaitForTx: 0x3da85eac212d9d1f3a0e2f5b6af2c96b57da962faf37b74e38aa7130a3bca5ae
+*** AToken ***
+
+Network: fantom
+tx: 0x3da85eac212d9d1f3a0e2f5b6af2c96b57da962faf37b74e38aa7130a3bca5ae
+contract address: 0x4F99B9a6208f0406d9F0Da32FB18F2a628F28428
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 2325625
+
+******
+
+WaitForTx: 0x3efef7b777a8364ce0004db0b7096d39dbc8857c361407d2dd12fc6415b823e3
+*** StableDebtToken ***
+
+Network: fantom
+tx: 0x3efef7b777a8364ce0004db0b7096d39dbc8857c361407d2dd12fc6415b823e3
+contract address: 0xf1f6A5677165E5a5c2Ee82774Db039840181dbBA
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 1716647
+
+******
+
+WaitForTx: 0x5bce95099d9d3e7179c8f7fdbe0eadc4e88b3025beed1f08126384f604a69d6e
+*** VariableDebtToken ***
+
+Network: fantom
+tx: 0x5bce95099d9d3e7179c8f7fdbe0eadc4e88b3025beed1f08126384f604a69d6e
+contract address: 0x417A5C9f6f1f0b543bd1B7Ed66991878A049aFAC
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 1421292
+
+******
+
+3. Deploy oracles
+getLendingPoolAddressesProvider: LendingPoolAddressesProvider.fantom
+assetsWithoutQuoteCurrency {
+  DAI: '0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e',
+  USDC: '0x04068da6c83afcfa0e13ba15a6696662335d5b75',
+  FRAX: '0xaf319E5789945197e365E7f7fbFc56B130523B33',
+  WFTM: '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83',
+  WBTC: '0x321162Cd933E2Be498Cd2267a90534A804051b11',
+  SPELL: '0x468003b688943977e6130f4f68f23aad939a1040'
+} {
+  DAI: '0x91d5DEFAFfE2854C7D02F50c80FA1fdc8A721e52',
+  USDC: '0x2553f4eeb82d5A26427b8d1106C51499CBa5D99c',
+  FRAX: '0xBaC409D670d996Ef852056f6d45eCA41A8D57FbD',
+  WFTM: '0xf4766552D15AE4d256Ad41B6cf2933482B0680dc',
+  WETH: '0x11DdD3d147E5b83D01cee7070027092397d63658',
+  WBTC: '0x8e94C22142F4A64b99022ccDd994f4e9EC86E4B4',
+  SPELL: '0x02E48946849e0BFDD7bEa5daa80AF77195C7E24c'
+}
+aggregatorAddressIndex 0
+aggregatorAddressIndex 1
+aggregatorAddressIndex 2
+aggregatorAddressIndex 3
+aggregatorAddressIndex 5
+aggregatorAddressIndex 6
+tokens, aggregators [
+  '0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e',
+  '0x04068da6c83afcfa0e13ba15a6696662335d5b75',
+  '0xaf319E5789945197e365E7f7fbFc56B130523B33',
+  '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83',
+  '0x321162Cd933E2Be498Cd2267a90534A804051b11',
+  '0x468003b688943977e6130f4f68f23aad939a1040'
+] [
+  '0x91d5DEFAFfE2854C7D02F50c80FA1fdc8A721e52',
+  '0x2553f4eeb82d5A26427b8d1106C51499CBa5D99c',
+  '0xBaC409D670d996Ef852056f6d45eCA41A8D57FbD',
+  '0xf4766552D15AE4d256Ad41B6cf2933482B0680dc',
+  '0x8e94C22142F4A64b99022ccDd994f4e9EC86E4B4',
+  '0x02E48946849e0BFDD7bEa5daa80AF77195C7E24c'
+]
+WaitForTx: 0xfbfa33c6de28acc4dbc1c02630324c33930e5a043fa052b0b7534fa738b0b3b3
+*** AaveOracle ***
+
+Network: fantom
+tx: 0xfbfa33c6de28acc4dbc1c02630324c33930e5a043fa052b0b7534fa738b0b3b3
+contract address: 0xFa9c1703aED230dff96fD8dB581605dD1175B310
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 650171
+
+******
+
+WaitForTx: 0xbe770b0088cd9e29d584c387c68cad42287ba1c643bfa1e283355e386d938312
+WaitForTx: 0x2f59bcdcdef1568fa3611555359494f8528e7264f4ff5b7df3b6bde84a89398a
+*** LendingRateOracle ***
+
+Network: fantom
+tx: 0x2f59bcdcdef1568fa3611555359494f8528e7264f4ff5b7df3b6bde84a89398a
+contract address: 0x7C272D3ae7ADeB2a4120b178F84b4F11E4930b0c
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 345146
+
+******
+
+WaitForTx: 0x34eb69352ce193e0a30c6874db5676734581c4e92b71afdbb5090e14240afa26
+- Oracle borrow initalization in 1 txs
+WaitForTx: 0x648ff05c3787868c6ab3b0ab31cb0075d41e7e068f9a70f5925fdd9356fc403f
+  - Setted Oracle Borrow Rates for: DAI, USDC, FRAX, WFTM, WETH, WBTC, SPELL
+WaitForTx: 0x94d42a990bdeb0896d9ea35c45b55c864abcef8f170daeb5c32ddeda8d35eaa6
+Aave Oracle: 0xFa9c1703aED230dff96fD8dB581605dD1175B310
+Lending Rate Oracle: 0x7C272D3ae7ADeB2a4120b178F84b4F11E4930b0c
+WaitForTx: 0x62b3d5c349aeb69ae8374a67b849b670424a41e9c93ea91ff18ee4ef05fab4a9
+WaitForTx: 0xdbff9080d26f5d9a091bd0022349b0e9acbf4a01691a858ba8f20e410d152570
+4. Deploy Data Provider
+getLendingPoolAddressesProvider: LendingPoolAddressesProvider.fantom
+WaitForTx: 0xaf50dbd2e44030ccf045b6ad34a7b80851deac5fd45d8fec77cf85a533208032
+*** AaveProtocolDataProvider ***
+
+Network: fantom
+tx: 0xaf50dbd2e44030ccf045b6ad34a7b80851deac5fd45d8fec77cf85a533208032
+contract address: 0x5c5126feAc7bcC2Bbf226305E230bfAc982492C4
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 1555854
+
+******
+
+5. Deploy WETH Gateway
+WaitForTx: 0xa4092f8cd8f39f115bdb7e042a786e43b04cea01433ddd1a05891cf0aef9dae1
+*** WETHGateway ***
+
+Network: fantom
+tx: 0xa4092f8cd8f39f115bdb7e042a786e43b04cea01433ddd1a05891cf0aef9dae1
+contract address: 0x2bf46aDa208dbDe6AFC8E55f93bE009AA08d21AA
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 1217607
+
+******
+
+WETHGateway.address 0x2bf46aDa208dbDe6AFC8E55f93bE009AA08d21AA
+        Finished WETHGateway deployment
+6. Initialize lending pool
+getLendingPoolAddressesProvider: LendingPoolAddressesProvider.fantom
+getLendingPoolAddressesProvider: LendingPoolAddressesProvider.fantom
+WaitForTx: 0x29cca459a04009ce729fe8105369391e58f0480a50eafb7e345301906e64aa2a
+*** DefaultReserveInterestRateStrategy ***
+
+Network: fantom
+tx: 0x29cca459a04009ce729fe8105369391e58f0480a50eafb7e345301906e64aa2a
+contract address: 0xD40F2C407A369C84ed8e8312FEAF0266cC3738fb
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 790705
+
+******
+
+AToken
+WaitForTx: 0x410313855e12ec1aa2854982400d6a357c981827eb74aed69bf4934d56a283ef
+*** DefaultReserveInterestRateStrategy ***
+
+Network: fantom
+tx: 0x410313855e12ec1aa2854982400d6a357c981827eb74aed69bf4934d56a283ef
+contract address: 0x03f1c899a22F1360C61E2875807caA227E5eB792
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 790705
+
+******
+
+AToken
+
+
+6. Initialize lending pool
+getLendingPoolAddressesProvider: LendingPoolAddressesProvider.fantom
+getLendingPoolAddressesProvider: LendingPoolAddressesProvider.fantom
+WaitForTx: 0xcf421f2028d61724398ffbf1e0f4bd54e8b2296094ce02a2afb727ba8c6a5529
+*** DefaultReserveInterestRateStrategy ***
+
+Network: fantom
+tx: 0xcf421f2028d61724398ffbf1e0f4bd54e8b2296094ce02a2afb727ba8c6a5529
+contract address: 0x606C499BD6513F6601919473202B8261D3976f94
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 790705
+
+******
+
+AToken
+WaitForTx: 0xbdc1eaca7c9129bcbb09b3a80a7dd01e530a70f90ad38084ac7930e9328a847d
+*** DefaultReserveInterestRateStrategy ***
+
+Network: fantom
+tx: 0xbdc1eaca7c9129bcbb09b3a80a7dd01e530a70f90ad38084ac7930e9328a847d
+contract address: 0xc87379a22b58e323BF772362AD33b6D4284Ee23f
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 790705
+
+******
+
+AToken
+WaitForTx: 0xc299c4c3530e6e95384a93f0273f254e4404e672e011afcd8f7992c37edcc84a
+*** DefaultReserveInterestRateStrategy ***
+
+Network: fantom
+tx: 0xc299c4c3530e6e95384a93f0273f254e4404e672e011afcd8f7992c37edcc84a
+contract address: 0x3f3663867938670Ed2AfaF263fBdFa46c12fB996
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 790501
+
+******
+
+AToken
+WaitForTx: 0xf8e7ef01ffdf4554fbcd79ab9261e828bca2a1b166d6eb20078fb038893a21e1
+*** DefaultReserveInterestRateStrategy ***
+
+Network: fantom
+tx: 0xf8e7ef01ffdf4554fbcd79ab9261e828bca2a1b166d6eb20078fb038893a21e1
+contract address: 0xC176E66B426EbCCc9a9E306d3ca3dF0128c508F3
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 790705
+
+******
+
+AToken
+AToken
+WaitForTx: 0xe3f332d8073cb4adde19be1a2ceaa6c37529d9246b4a38ebb47c4a4117392557
+*** DefaultReserveInterestRateStrategy ***
+
+Network: fantom
+tx: 0xe3f332d8073cb4adde19be1a2ceaa6c37529d9246b4a38ebb47c4a4117392557
+contract address: 0xc2895EDCD5A9351430a5EDD6d1931Dfc15C54acE
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 790705
+
+******
+
+AToken
+AToken
+- Reserves initialization in 7 txs
+WaitForTx: 0xeda364bcefc3815b913882155eb6541bddc259840c203cd26f46a1eba4376bb1
+  - Reserve ready for: DAI
+    * gasUsed 1997881
+WaitForTx: 0xa577945685a3b1d60b60fe20f24e8ce7d1088aee578664127f3c18594d1c9659
+  - Reserve ready for: USDC
+    * gasUsed 1982841
+WaitForTx: 0x16c0b78deec18eaa81d45f4414c79165aa75636434fdfe3eeb8bed8a4f74aec1
+  - Reserve ready for: FRAX
+    * gasUsed 1982841
+WaitForTx: 0xc2e66e2af9d7eca0affe2f3722b7c0547ac9d53db4d268aa86dc86822ca877fd
+  - Reserve ready for: WFTM
+    * gasUsed 1982841
+WaitForTx: 0x138ab68f502e0fd62cc6c5e9df6af1894a788afa4961af678e5af0975e85fa1d
+  - Reserve ready for: WETH
+    * gasUsed 1982841
+WaitForTx: 0xf06459d72c5933196c6656f91e8e42d2294ad43f46e3e21786f5b40377b1ca50
+  - Reserve ready for: WBTC
+    * gasUsed 1982841
+WaitForTx: 0x55e96b9931e0d6bd0c3f9cd6f3fefe03a9b1e27339d204f77ed2b4f828018669
+  - Reserve ready for: SPELL
+    * gasUsed 2005046
+getLendingPoolAddressesProvider: LendingPoolAddressesProvider.fantom
+WaitForTx: 0xe31d28fdf3eb46e3bf216535e339728d35d50a25187b741592834e3fde23dcd0
+- Configure reserves in 1 txs
+WaitForTx: 0x655301303308fbd1c18be1cb907176ada4287673d39e919371f63fcdd570a80a
+  - Init for: DAI, USDC, FRAX, WFTM, WETH, WBTC, SPELL
+WaitForTx: 0x35329acc700a7a69bf9628b03b6f52cd7d47c0a451fd52f3a81928cd75b4c5ba
+WaitForTx: 0x499b1f82bbd51b9594be6bd89b5128c4fa0ebb327c4a0a1c349eb9844339ed5c
+*** LendingPoolCollateralManager ***
+
+Network: fantom
+tx: 0x499b1f82bbd51b9594be6bd89b5128c4fa0ebb327c4a0a1c349eb9844339ed5c
+contract address: 0x34CBcc90738CD69623D227D13b5ac10B8e45f0e5
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 2372773
+
+******
+
+        Setting lending pool collateral manager implementation with address 0x34CBcc90738CD69623D227D13b5ac10B8e45f0e5
+WaitForTx: 0x180633f26f872c19703015a15343339be14793eb13f61459ae135c18c94b80ba
+        Setting AaveProtocolDataProvider at AddressesProvider at id: 0x01 0x34CBcc90738CD69623D227D13b5ac10B8e45f0e5
+WaitForTx: 0x1ae65e838d949735b03a9c433f17d61f462ad251b2a63f655cb700394b224041
+WaitForTx: 0x27797566c88ec1336be4966dea09f156c29bae1aec24cd68cfbfab38133ce72c
+*** WalletBalanceProvider ***
+
+Network: fantom
+tx: 0x27797566c88ec1336be4966dea09f156c29bae1aec24cd68cfbfab38133ce72c
+contract address: 0xcc005D7318c0F8D88593691c7Af059CAa20Fe21c
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 10000000000
+gas used: 627128
+
+******
+
+Error: invalid ENS name (argument="name", value=undefined, code=INVALID_ARGUMENT, version=providers/5.1.2)
+    at Logger.makeError (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/@ethersproject/logger/src.ts/index.ts:205:28)
+    at Logger.throwError (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/@ethersproject/logger/src.ts/index.ts:217:20)
+    at Logger.throwArgumentError (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/@ethersproject/logger/src.ts/index.ts:221:21)
+    at EthersProviderWrapper.<anonymous> (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/@ethersproject/providers/src.ts/base-provider.ts:1435:20)
+    at step (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/@ethersproject/providers/lib/base-provider.js:48:23)
+    at Object.next (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/@ethersproject/providers/lib/base-provider.js:29:53)
+    at fulfilled (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/@ethersproject/providers/lib/base-provider.js:20:58)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) {
+  reason: 'invalid ENS name',
+  code: 'INVALID_ARGUMENT',
+  argument: 'name',
+  value: undefined
+}

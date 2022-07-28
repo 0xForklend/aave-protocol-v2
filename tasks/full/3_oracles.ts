@@ -26,7 +26,6 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
   .setAction(async ({ verify, pool }, DRE) => {
     try {
       await DRE.run('set-DRE');
-      const deployer = await getFirstSigner();
       const network = <eNetwork>DRE.network.name;
       const poolConfig = loadPoolConfig(pool);
       const {
@@ -61,11 +60,7 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
 
       if (notFalsyOrZeroAddress(aaveOracleAddress)) {
         aaveOracle = await await getAaveOracle(aaveOracleAddress);
-        await waitForTx(
-          await aaveOracle.setAssetSources(tokens, aggregators, {
-            nonce: await deployer.getTransactionCount('pending'),
-          })
-        );
+        await waitForTx(await aaveOracle.setAssetSources(tokens, aggregators));
       } else {
         aaveOracle = await deployAaveOracle(
           [
@@ -77,11 +72,7 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
           ],
           verify
         );
-        await waitForTx(
-          await aaveOracle.setAssetSources(tokens, aggregators, {
-            nonce: await deployer.getTransactionCount('pending'),
-          })
-        );
+        await waitForTx(await aaveOracle.setAssetSources(tokens, aggregators));
       }
 
       if (notFalsyOrZeroAddress(lendingRateOracleAddress)) {
@@ -101,16 +92,8 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
       console.log('Lending Rate Oracle: %s', lendingRateOracle.address);
 
       // Register the proxy price provider on the addressesProvider
-      await waitForTx(
-        await addressesProvider.setPriceOracle(aaveOracle.address, {
-          nonce: await deployer.getTransactionCount('pending'),
-        })
-      );
-      await waitForTx(
-        await addressesProvider.setLendingRateOracle(lendingRateOracle.address, {
-          nonce: await deployer.getTransactionCount('pending'),
-        })
-      );
+      await waitForTx(await addressesProvider.setPriceOracle(aaveOracle.address));
+      await waitForTx(await addressesProvider.setLendingRateOracle(lendingRateOracle.address));
     } catch (error) {
       if (DRE.network.name.includes('tenderly')) {
         const transactionLink = `https://dashboard.tenderly.co/${DRE.config.tenderly.username}/${

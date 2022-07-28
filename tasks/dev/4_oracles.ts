@@ -39,7 +39,6 @@ task('dev:deploy-oracles', 'Deploy oracles for dev environment')
       ...Object.fromEntries(Object.keys(TokenContractId).map((symbol) => [symbol, ''])),
       USD: UsdAddress,
     } as iAssetBase<string>;
-    const deployer = await getFirstSigner();
     const mockTokens = await getAllMockedTokens();
     const mockTokensAddress = Object.keys(mockTokens).reduce<iAssetBase<string>>((prev, curr) => {
       prev[curr as keyof iAssetBase<string>] = mockTokens[curr].address;
@@ -49,11 +48,7 @@ task('dev:deploy-oracles', 'Deploy oracles for dev environment')
     const admin = await addressesProvider.getPoolAdmin();
 
     const fallbackOracle = await deployPriceOracle(verify);
-    await waitForTx(
-      await fallbackOracle.setEthUsdPrice(MockUsdPriceInWei, {
-        nonce: await deployer.getTransactionCount('pending'),
-      })
-    );
+    await waitForTx(await fallbackOracle.setEthUsdPrice(MockUsdPriceInWei));
     await setInitialAssetPricesInOracle(AllAssetsInitialPrices, mockTokensAddress, fallbackOracle);
 
     const mockAggregators = await deployAllMockAggregators(AllAssetsInitialPrices, verify);
@@ -77,18 +72,10 @@ task('dev:deploy-oracles', 'Deploy oracles for dev environment')
       ],
       verify
     );
-    await waitForTx(
-      await addressesProvider.setPriceOracle(fallbackOracle.address, {
-        nonce: await deployer.getTransactionCount('pending'),
-      })
-    );
+    await waitForTx(await addressesProvider.setPriceOracle(fallbackOracle.address));
 
     const lendingRateOracle = await deployLendingRateOracle(verify);
-    await waitForTx(
-      await addressesProvider.setLendingRateOracle(lendingRateOracle.address, {
-        nonce: await deployer.getTransactionCount('pending'),
-      })
-    );
+    await waitForTx(await addressesProvider.setLendingRateOracle(lendingRateOracle.address));
 
     const { USD, ...tokensAddressesWithoutUsd } = allTokenAddresses;
     const allReservesAddresses = {

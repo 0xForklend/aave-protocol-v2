@@ -20,7 +20,6 @@ export const setInitialMarketRatesInRatesOracleByHelper = async (
   lendingRateOracleInstance: LendingRateOracle,
   admin: tEthereumAddress
 ) => {
-  const deployer = await getFirstSigner();
   const stableAndVariableTokenHelper = await getStableAndVariableTokensHelper();
   const assetAddresses: string[] = [];
   const borrowRates: string[] = [];
@@ -47,9 +46,7 @@ export const setInitialMarketRatesInRatesOracleByHelper = async (
 
   // Set helper as owner
   await waitForTx(
-    await lendingRateOracleInstance.transferOwnership(stableAndVariableTokenHelper.address, {
-      nonce: await deployer.getTransactionCount('pending'),
-    })
+    await lendingRateOracleInstance.transferOwnership(stableAndVariableTokenHelper.address)
   );
 
   console.log(`- Oracle borrow initalization in ${chunkedTokens.length} txs`);
@@ -58,23 +55,14 @@ export const setInitialMarketRatesInRatesOracleByHelper = async (
       await stableAndVariableTokenHelper.setOracleBorrowRates(
         chunkedTokens[chunkIndex],
         chunkedRates[chunkIndex],
-        lendingRateOracleInstance.address,
-        {
-          nonce: await deployer.getTransactionCount('pending'),
-        }
+        lendingRateOracleInstance.address
       )
     );
     console.log(`  - Setted Oracle Borrow Rates for: ${chunkedSymbols[chunkIndex].join(', ')}`);
   }
   // Set back ownership
   await waitForTx(
-    await stableAndVariableTokenHelper.setOracleOwnership(
-      lendingRateOracleInstance.address,
-      admin,
-      {
-        nonce: await deployer.getTransactionCount('pending'),
-      }
-    )
+    await stableAndVariableTokenHelper.setOracleOwnership(lendingRateOracleInstance.address, admin)
   );
 };
 
@@ -83,7 +71,6 @@ export const setInitialAssetPricesInOracle = async (
   assetsAddresses: iAssetBase<tEthereumAddress>,
   priceOracleInstance: PriceOracle
 ) => {
-  const deployer = await getFirstSigner();
   for (const [assetSymbol, price] of Object.entries(prices) as [string, string][]) {
     const assetAddressIndex = Object.keys(assetsAddresses).findIndex(
       (value) => value === assetSymbol
@@ -91,11 +78,7 @@ export const setInitialAssetPricesInOracle = async (
     const [, assetAddress] = (Object.entries(assetsAddresses) as [string, string][])[
       assetAddressIndex
     ];
-    await waitForTx(
-      await priceOracleInstance.setAssetPrice(assetAddress, price, {
-        nonce: await deployer.getTransactionCount('pending'),
-      })
-    );
+    await waitForTx(await priceOracleInstance.setAssetPrice(assetAddress, price));
   }
 };
 
@@ -104,7 +87,6 @@ export const setAssetPricesInOracle = async (
   assetsAddresses: SymbolMap<tEthereumAddress>,
   priceOracleInstance: PriceOracle
 ) => {
-  const deployer = await getFirstSigner();
   for (const [assetSymbol, price] of Object.entries(prices) as [string, string][]) {
     const assetAddressIndex = Object.keys(assetsAddresses).findIndex(
       (value) => value === assetSymbol
@@ -112,11 +94,7 @@ export const setAssetPricesInOracle = async (
     const [, assetAddress] = (Object.entries(assetsAddresses) as [string, string][])[
       assetAddressIndex
     ];
-    await waitForTx(
-      await priceOracleInstance.setAssetPrice(assetAddress, price, {
-        nonce: await deployer.getTransactionCount('pending'),
-      })
-    );
+    await waitForTx(await priceOracleInstance.setAssetPrice(assetAddress, price));
   }
 };
 

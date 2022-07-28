@@ -156,8 +156,12 @@ export const initReservesByHelper = async (
 
   console.log(`- Reserves initialization in ${chunkedInitInputParams.length} txs`);
   for (let chunkIndex = 0; chunkIndex < chunkedInitInputParams.length; chunkIndex++) {
+    console.log('ChunkedInitInputParams:', chunkedInitInputParams[chunkIndex]);
     const tx3 = await waitForTx(
-      await configurator.batchInitReserve(chunkedInitInputParams[chunkIndex])
+      await configurator.batchInitReserve(chunkedInitInputParams[chunkIndex], {
+        gasLimit: 8000000,
+        // gasPrice: 10 * 1000 * 1000 * 1000
+      })
     );
 
     console.log(`  - Reserve ready for: ${chunkedSymbols[chunkIndex].join(', ')}`);
@@ -197,7 +201,6 @@ export const configureReservesByHelper = async (
   helpers: AaveProtocolDataProvider,
   admin: tEthereumAddress
 ) => {
-  const deployer = await getFirstSigner();
   const addressProvider = await getLendingPoolAddressesProvider();
   const atokenAndRatesDeployer = await getATokensAndRatesHelper();
   const tokens: string[] = [];
@@ -263,11 +266,7 @@ export const configureReservesByHelper = async (
   }
   if (tokens.length) {
     // Set aTokenAndRatesDeployer as temporal admin
-    await waitForTx(
-      await addressProvider.setPoolAdmin(atokenAndRatesDeployer.address, {
-        nonce: await deployer.getTransactionCount('pending'),
-      })
-    );
+    await waitForTx(await addressProvider.setPoolAdmin(atokenAndRatesDeployer.address));
 
     // Deploy init per chunks
     const enableChunks = 20;
@@ -277,18 +276,12 @@ export const configureReservesByHelper = async (
     console.log(`- Configure reserves in ${chunkedInputParams.length} txs`);
     for (let chunkIndex = 0; chunkIndex < chunkedInputParams.length; chunkIndex++) {
       await waitForTx(
-        await atokenAndRatesDeployer.configureReserves(chunkedInputParams[chunkIndex], {
-          nonce: await deployer.getTransactionCount('pending'),
-        })
+        await atokenAndRatesDeployer.configureReserves(chunkedInputParams[chunkIndex])
       );
       console.log(`  - Init for: ${chunkedSymbols[chunkIndex].join(', ')}`);
     }
     // Set deployer back as admin
-    await waitForTx(
-      await addressProvider.setPoolAdmin(admin, {
-        nonce: await deployer.getTransactionCount('pending'),
-      })
-    );
+    await waitForTx(await addressProvider.setPoolAdmin(admin));
   }
 };
 

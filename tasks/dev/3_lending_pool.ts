@@ -23,18 +23,13 @@ task('dev:deploy-lending-pool', 'Deploy lending pool for dev enviroment')
   .addParam('pool', `Pool name to retrieve configuration, supported: ${Object.values(ConfigNames)}`)
   .setAction(async ({ verify, pool }, localBRE) => {
     await localBRE.run('set-DRE');
-    const deployer = await getFirstSigner();
     const addressesProvider = await getLendingPoolAddressesProvider();
     const poolConfig = loadPoolConfig(pool);
 
     const lendingPoolImpl = await deployLendingPool(verify);
 
     // Set lending pool impl to Address Provider
-    await waitForTx(
-      await addressesProvider.setLendingPoolImpl(lendingPoolImpl.address, {
-        nonce: await deployer.getTransactionCount('pending'),
-      })
-    );
+    await waitForTx(await addressesProvider.setLendingPoolImpl(lendingPoolImpl.address));
 
     const address = await addressesProvider.getLendingPool();
     const lendingPoolProxy = await getLendingPool(address);
@@ -45,9 +40,7 @@ task('dev:deploy-lending-pool', 'Deploy lending pool for dev enviroment')
 
     // Set lending pool conf impl to Address Provider
     await waitForTx(
-      await addressesProvider.setLendingPoolConfiguratorImpl(lendingPoolConfiguratorImpl.address, {
-        nonce: await deployer.getTransactionCount('pending'),
-      })
+      await addressesProvider.setLendingPoolConfiguratorImpl(lendingPoolConfiguratorImpl.address)
     );
 
     const lendingPoolConfiguratorProxy = await getLendingPoolConfiguratorProxy(

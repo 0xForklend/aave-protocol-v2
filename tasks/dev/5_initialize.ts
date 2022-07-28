@@ -33,7 +33,6 @@ task('dev:initialize-lending-pool', 'Initialize lending pool configuration.')
   .addParam('pool', `Pool name to retrieve configuration, supported: ${Object.values(ConfigNames)}`)
   .setAction(async ({ verify, pool }, localBRE) => {
     await localBRE.run('set-DRE');
-    const deployer = await getFirstSigner();
     const network = <eNetwork>localBRE.network.name;
     const poolConfig = loadPoolConfig(pool);
     const {
@@ -76,9 +75,7 @@ task('dev:initialize-lending-pool', 'Initialize lending pool configuration.')
 
     const collateralManager = await deployLendingPoolCollateralManager(verify);
     await waitForTx(
-      await addressesProvider.setLendingPoolCollateralManager(collateralManager.address, {
-        nonce: await deployer.getTransactionCount('pending'),
-      })
+      await addressesProvider.setLendingPoolCollateralManager(collateralManager.address)
     );
 
     const mockFlashLoanReceiver = await deployMockFlashLoanReceiver(

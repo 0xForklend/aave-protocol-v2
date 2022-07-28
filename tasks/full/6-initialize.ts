@@ -24,7 +24,6 @@ task('full:initialize-lending-pool', 'Initialize lending pool configuration.')
   .setAction(async ({ verify, pool }, localBRE) => {
     try {
       await localBRE.run('set-DRE');
-      const deployer = await getFirstSigner();
       const network = <eNetwork>localBRE.network.name;
       const poolConfig = loadPoolConfig(pool);
       const {
@@ -84,9 +83,7 @@ task('full:initialize-lending-pool', 'Initialize lending pool configuration.')
         collateralManagerAddress
       );
       await waitForTx(
-        await addressesProvider.setLendingPoolCollateralManager(collateralManagerAddress, {
-          nonce: await deployer.getTransactionCount('pending'),
-        })
+        await addressesProvider.setLendingPoolCollateralManager(collateralManagerAddress)
       );
 
       console.log(
@@ -97,10 +94,7 @@ task('full:initialize-lending-pool', 'Initialize lending pool configuration.')
       await waitForTx(
         await addressesProvider.setAddress(
           '0x0100000000000000000000000000000000000000000000000000000000000000',
-          aaveProtocolDataProvider.address,
-          {
-            nonce: await deployer.getTransactionCount('pending'),
-          }
+          aaveProtocolDataProvider.address
         )
       );
 

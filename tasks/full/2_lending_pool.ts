@@ -30,7 +30,6 @@ task('full:deploy-lending-pool', 'Deploy lending pool for dev enviroment')
   .setAction(async ({ verify, pool }, DRE: HardhatRuntimeEnvironment) => {
     try {
       await DRE.run('set-DRE');
-      const deployer = await getFirstSigner();
       const network = <eNetwork>DRE.network.name;
       const poolConfig = loadPoolConfig(pool);
       const addressesProvider = await getLendingPoolAddressesProvider();
@@ -47,12 +46,7 @@ task('full:deploy-lending-pool', 'Deploy lending pool for dev enviroment')
       }
       console.log('\tSetting lending pool implementation with address:', lendingPoolImplAddress);
       // Set lending pool impl to Address provider
-      await waitForTx(
-        await addressesProvider.setLendingPoolImpl(lendingPoolImplAddress, {
-          nonce: await deployer.getTransactionCount('pending'),
-          gasPrice: 100 * 1000 * 1000 * 1000,
-        })
-      );
+      await waitForTx(await addressesProvider.setLendingPoolImpl(lendingPoolImplAddress));
 
       const address = await addressesProvider.getLendingPool();
       const lendingPoolProxy = await getLendingPool(address);
@@ -72,9 +66,7 @@ task('full:deploy-lending-pool', 'Deploy lending pool for dev enviroment')
       );
       // Set lending pool conf impl to Address Provider
       await waitForTx(
-        await addressesProvider.setLendingPoolConfiguratorImpl(lendingPoolConfiguratorImplAddress, {
-          nonce: await deployer.getTransactionCount('pending'),
-        })
+        await addressesProvider.setLendingPoolConfiguratorImpl(lendingPoolConfiguratorImplAddress)
       );
 
       const lendingPoolConfiguratorProxy = await getLendingPoolConfiguratorProxy(
@@ -87,11 +79,7 @@ task('full:deploy-lending-pool', 'Deploy lending pool for dev enviroment')
       );
       const admin = await DRE.ethers.getSigner(await getEmergencyAdmin(poolConfig));
       // Pause market during deployment
-      await waitForTx(
-        await lendingPoolConfiguratorProxy.connect(admin).setPoolPause(true, {
-          nonce: await deployer.getTransactionCount('pending'),
-        })
-      );
+      await waitForTx(await lendingPoolConfiguratorProxy.connect(admin).setPoolPause(true));
 
       // Deploy deployment helpers
       await deployStableAndVariableTokensHelper(
