@@ -67,6 +67,7 @@ const getCommonNetworkConfig = (networkName: eNetwork, networkId: number) => ({
   gasPrice: NETWORKS_DEFAULT_GAS[networkName],
   chainId: networkId,
   accounts: process.env.PRIVATE_KEYS !== undefined ? process.env.PRIVATE_KEYS.split(",") : [],
+  timeout: 100000,
 });
 
 let forkMode;

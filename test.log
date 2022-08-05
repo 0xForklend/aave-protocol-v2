@@ -1,0 +1,656 @@
+mihailkrukov@Mihails-MacBook-Pro aave-protocol-v2 % yarn aave:matic:full:migration:add-registry
+yarn run v1.22.17
+warning package.json: License should be a valid SPDX license expression
+$ npm run compile && npm run hardhat:matic -- aave:mainnet
+
+> @aave/protocol-v2@1.0.1 compile
+> SKIP_LOAD=true hardhat compile
+
+Nothing to compile
+Creating Typechain artifacts in directory types for target ethers-v5
+Successfully generated Typechain artifacts!
+
+> @aave/protocol-v2@1.0.1 hardhat:matic
+> hardhat --network matic "aave:mainnet"
+
+- Enviroment
+  - Network : matic
+Migration started
+
+WaitForTx: 0xbfa7df46dfb80ee4a0ed0f38a5585732ab0b02b03a8c32555760cc5416a772cb
+*** LendingPoolAddressesProvider ***
+
+Network: matic
+tx: 0xbfa7df46dfb80ee4a0ed0f38a5585732ab0b02b03a8c32555760cc5416a772cb
+contract address: 0xF998666c07C67cc4dB15f0340C5A48B07eD1D53A
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 1604832
+
+******
+
+- Deploying a new Address Providers Registry:
+prior dre
+Deployer: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE 46.837377413616527794
+Signer 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+Balance 46.837377413616527794
+WaitForTx: 0x791e8248682ba2e7aee482b65fee028a5cf1ab4c33096d67187d0191e4ca6325
+*** LendingPoolAddressesProviderRegistry ***
+
+Network: matic
+tx: 0x791e8248682ba2e7aee482b65fee028a5cf1ab4c33096d67187d0191e4ca6325
+contract address: 0xDC1e303F458Ccd54685bCaD37a27143aC448813b
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 543411
+
+******
+
+Deployed Registry Address: 0xDC1e303F458Ccd54685bCaD37a27143aC448813b
+getLendingPoolAddressesProvider: LendingPoolAddressesProvider.matic
+WaitForTx: 0x44c971ea7c74f20059e4251ece9970ab830162d983789d49af06c37e7616d255
+Added LendingPoolAddressesProvider with address "0xF998666c07C67cc4dB15f0340C5A48B07eD1D53A" to registry located at 0xDC1e303F458Ccd54685bCaD37a27143aC448813b
+WaitForTx: 0x9814387dfc6f2f3b5da8c3acae3f55dbe78c334881fc015e7de69b7cd52443be
+WaitForTx: 0xa8fd4316d285e46195eda118a282caaf16076eb71590c565e9e3bd850ade81d1
+Pool Admin 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+Emergency Admin 0x4a204b23bfc147c0cB0bCA135A25A2ABa767F7f7
+getLendingPoolAddressesProvider: LendingPoolAddressesProvider.matic
+        Deploying new lending pool implementation & libraries...
+WaitForTx: 0x4eb0b3a35cad6012cbd98c29a60e422943549da244deb170acff31cf57d96129
+*** ReserveLogic ***
+
+Network: matic
+tx: 0x4eb0b3a35cad6012cbd98c29a60e422943549da244deb170acff31cf57d96129
+contract address: 0x65618665d3b0f8cBC84e005c4B4A65b7cCEE45DE
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 176603
+
+******
+
+WaitForTx: 0x063b8dd00655132eda6e3b17f5316034ccbb8167a3ae75878e6a330e66a7fa27
+*** GenericLogic ***
+
+Network: matic
+tx: 0x063b8dd00655132eda6e3b17f5316034ccbb8167a3ae75878e6a330e66a7fa27
+contract address: 0x3D5d2f1Dc47E9c6291d6275A7120f30Fec8215f9
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 855592
+
+******
+
+WaitForTx: 0xb422d54ee46036a591140c03e86e47ae57d0be598585656c5ccf437164f42e1b
+*** ValidationLogic ***
+
+Network: matic
+tx: 0xb422d54ee46036a591140c03e86e47ae57d0be598585656c5ccf437164f42e1b
+contract address: 0x94323713455f95AbbDcE7b2CB68d7226CaC279E3
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 1838521
+
+******
+
+WaitForTx: 0xa66e18a4a150f45b94435afcf2870ad2c2f61e0fe1b11fcfc907ea5e32f4ab05
+*** LendingPool ***
+
+Network: matic
+tx: 0xa66e18a4a150f45b94435afcf2870ad2c2f61e0fe1b11fcfc907ea5e32f4ab05
+contract address: 0xE25A3E74278807F1554C1f78a1A968BA769a8791
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 4797724
+
+******
+
+        Setting lending pool implementation with address: 0xE25A3E74278807F1554C1f78a1A968BA769a8791
+WaitForTx: 0xc95c288637c4a51baf6a757d52986aaa89ca3eb540b0ba43e7beb20fdf1770bf
+        Deploying new configurator implementation...
+WaitForTx: 0x0df2d87193e446ae800dc7638ea98e3ede5713bc02d95b4d61cb1aebde67eab9
+*** LendingPoolConfigurator ***
+
+Network: matic
+tx: 0x0df2d87193e446ae800dc7638ea98e3ede5713bc02d95b4d61cb1aebde67eab9
+contract address: 0xcA958F137dA2740285C57A86fe9546c30D352A55
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 3484625
+
+******
+
+        Setting lending pool configurator implementation with address: 0xcA958F137dA2740285C57A86fe9546c30D352A55
+WaitForTx: 0xff015333ea545c644b830904fb1abb27874cf358b9dc59020151a497b5f61ac2
+WaitForTx: 0xfad84721a50ed3acdd9399ccac585d7e004d7cba22c38c4806e3a145a6ae7fae
+WaitForTx: 0x28eae662b22ec7a3b0b69cacc979392f06c1b736ee1be5525f0d2917f90fe9a4
+*** StableAndVariableTokensHelper ***
+
+Network: matic
+tx: 0x28eae662b22ec7a3b0b69cacc979392f06c1b736ee1be5525f0d2917f90fe9a4
+contract address: 0x2e699e833D5cFfCC58922336fd028B05ca96624D
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 3699874
+
+******
+
+WaitForTx: 0x795c8d352e84cfe241c8b87cd06a6b9b14334d4292395ef38e4b8cc3fed27558
+*** ATokensAndRatesHelper ***
+
+Network: matic
+tx: 0x795c8d352e84cfe241c8b87cd06a6b9b14334d4292395ef38e4b8cc3fed27558
+contract address: 0x0d7840Df528d3bF5A06Ff795A2aab84BEe9CFC0A
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 3792708
+
+******
+
+Deploying implementation AToken
+WaitForTx: 0x5b6c27338a2590d2d15936c871c402ebd436ca6560bbab5f6af55171c3671474
+*** AToken ***
+
+Network: matic
+tx: 0x5b6c27338a2590d2d15936c871c402ebd436ca6560bbab5f6af55171c3671474
+contract address: 0x2e45c9F7Ce1F99eF9DadB8e07982Fd5971821145
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 2325625
+
+******
+
+WaitForTx: 0x8c130769cdb0896c52630ada29d079f816a26b6425c60ca870f7e8bfee636a02
+*** StableDebtToken ***
+
+Network: matic
+tx: 0x8c130769cdb0896c52630ada29d079f816a26b6425c60ca870f7e8bfee636a02
+contract address: 0x889aF9C29ec0B758d75Df9B45947D5e19B48b2a6
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 1716647
+
+******
+
+WaitForTx: 0xf1aa80238ceccbdf244b3533ce1063bd0a6fbcc9757a8c54d6b8358e770db7a7
+*** VariableDebtToken ***
+
+Network: matic
+tx: 0xf1aa80238ceccbdf244b3533ce1063bd0a6fbcc9757a8c54d6b8358e770db7a7
+contract address: 0x3771766a6Ae8B6b42816173951c2A86a71424F43
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 1421292
+
+******
+
+ReserveAssets: {
+  matic: {
+    DAI: '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063',
+    USDC: '0x2791bca1f2de4661ed88a30c99a7a9449aa84174',
+    FRAX: '0x45c32fa6df82ead1e2ef74d17b76547eddfaff89',
+    WETH: '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619',
+    WBTC: '0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6'
+  },
+  buidlerevm: {},
+  hardhat: {},
+  coverage: {},
+  arbitrum: {
+    DAI: '0xda10009cbd5d07dd0cecc66161fc93d7c9000da1',
+    USDC: '0xff970a61a04b1ca14834a43f5de4533ebddb5cc8',
+    FRAX: '0x17fc002b466eec40dae837fc4be5c67993ddbd6f',
+    WETH: '0x82af49447d8a07e3bd95bd0d56f35241523fbab1',
+    WBTC: '0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f',
+    SPELL: '0x3e6648c5a70a150a88bce65f4ad4d506fe15d2af'
+  },
+  fantom: {
+    DAI: '0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e',
+    USDC: '0x04068da6c83afcfa0e13ba15a6696662335d5b75',
+    FRAX: '0xaf319E5789945197e365E7f7fbFc56B130523B33',
+    WFTM: '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83',
+    WETH: '0x74b23882a30290451A17c44f4F05243b6b58C76d',
+    WBTC: '0x321162Cd933E2Be498Cd2267a90534A804051b11',
+    SPELL: '0x468003b688943977e6130f4f68f23aad939a1040'
+  },
+  kovan: {
+    AAVE: '0xB597cd8D3217ea6477232F9217fa70837ff667Af',
+    BAT: '0x2d12186Fbb9f9a8C28B3FfdD4c42920f8539D738',
+    BUSD: '0x4c6E1EFC12FDfD568186b7BAEc0A43fFfb4bCcCf',
+    DAI: '0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD',
+    ENJ: '0xC64f90Cd7B564D3ab580eb20a102A8238E218be2',
+    KNC: '0x3F80c39c0b96A0945f9F0E9f55d8A8891c5671A8',
+    LINK: '0xAD5ce863aE3E4E9394Ab43d4ba0D80f419F61789',
+    MANA: '0x738Dc6380157429e957d223e6333Dc385c85Fec7',
+    MKR: '0x61e4CAE3DA7FD189e52a4879C7B8067D7C2Cc0FA',
+    REN: '0x5eebf65A6746eed38042353Ba84c8e37eD58Ac6f',
+    SNX: '0x7FDb81B0b8a010dd4FFc57C3fecbf145BA8Bd947',
+    SUSD: '0x99b267b9D96616f906D53c26dECf3C5672401282',
+    TUSD: '0x016750AC630F711882812f24Dba6c95b9D35856d',
+    UNI: '0x075A36BA8846C6B6F53644fDd3bf17E5151789DC',
+    USDC: '0xe22da380ee6B445bb8273C81944ADEB6E8450422',
+    USDT: '0x13512979ADE267AB5100878E2e0f485B568328a4',
+    WBTC: '0xD1B98B6607330172f1D991521145A22BCe793277',
+    WETH: '0xd0a1e359811322d97991e03f863a0c30c2cf029c',
+    YFI: '0xb7c325266ec274fEb1354021D27FA3E3379D840d',
+    ZRX: '0xD0d76886cF8D952ca26177EB7CfDf83bad08C00C'
+  },
+  ropsten: {
+    AAVE: '',
+    BAT: '0x85B24b3517E3aC7bf72a14516160541A60cFF19d',
+    BUSD: '0xFA6adcFf6A90c11f31Bc9bb59eC0a6efB38381C6',
+    DAI: '0xf80A32A835F79D7787E8a8ee5721D0fEaFd78108',
+    ENJ: '0x0000000000000000000000000000000000000000',
+    KNC: '0xCe4aA1dE3091033Ba74FA2Ad951f6adc5E5cF361',
+    LINK: '0x1a906E71FF9e28d8E01460639EB8CF0a6f0e2486',
+    MANA: '0x78b1F763857C8645E46eAdD9540882905ff32Db7',
+    MKR: '0x2eA9df3bABe04451c9C3B06a2c844587c59d9C37',
+    REN: '0x0000000000000000000000000000000000000000',
+    SNX: '0xF80Aa7e2Fda4DA065C55B8061767F729dA1476c7',
+    SUSD: '0xc374eB17f665914c714Ac4cdC8AF3a3474228cc5',
+    TUSD: '0xa2EA00Df6d8594DBc76b79beFe22db9043b8896F',
+    UNI: '0x0000000000000000000000000000000000000000',
+    USDC: '0x851dEf71f0e6A903375C1e536Bd9ff1684BAD802',
+    USDT: '0xB404c51BBC10dcBE948077F18a4B8E553D160084',
+    WBTC: '0xa0E54Ab6AA5f0bf1D62EC3526436F3c05b3348A0',
+    WETH: '0xc778417e063141139fce010982780140aa0cd5ab',
+    YFI: '0x0000000000000000000000000000000000000000',
+    ZRX: '0x02d7055704EfF050323A2E5ee4ba05DB2A588959'
+  },
+  main: {
+    AAVE: '0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9',
+    BAT: '0x0d8775f648430679a709e98d2b0cb6250d2887ef',
+    BUSD: '0x4Fabb145d64652a948d72533023f6E7A623C7C53',
+    DAI: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+    ENJ: '0xF629cBd94d3791C9250152BD8dfBDF380E2a3B9c',
+    KNC: '0xdd974D5C2e2928deA5F71b9825b8b646686BD200',
+    LINK: '0x514910771AF9Ca656af840dff83E8264EcF986CA',
+    MANA: '0x0F5D2fB29fb7d3CFeE444a200298f468908cC942',
+    MKR: '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2',
+    REN: '0x408e41876cCCDC0F92210600ef50372656052a38',
+    SNX: '0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F',
+    SUSD: '0x57Ab1ec28D129707052df4dF418D58a2D46d5f51',
+    TUSD: '0x0000000000085d4780B73119b644AE5ecd22b376',
+    UNI: '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984',
+    USDC: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+    USDT: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+    WBTC: '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599',
+    WETH: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+    YFI: '0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e',
+    ZRX: '0xE41d2489571d322189246DaFA5ebDe1F4699F498',
+    xSUSHI: '0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272'
+  },
+  tenderly: {
+    AAVE: '0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9',
+    BAT: '0x0d8775f648430679a709e98d2b0cb6250d2887ef',
+    BUSD: '0x4Fabb145d64652a948d72533023f6E7A623C7C53',
+    DAI: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+    ENJ: '0xF629cBd94d3791C9250152BD8dfBDF380E2a3B9c',
+    KNC: '0xdd974D5C2e2928deA5F71b9825b8b646686BD200',
+    LINK: '0x514910771AF9Ca656af840dff83E8264EcF986CA',
+    MANA: '0x0F5D2fB29fb7d3CFeE444a200298f468908cC942',
+    MKR: '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2',
+    REN: '0x408e41876cCCDC0F92210600ef50372656052a38',
+    SNX: '0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F',
+    SUSD: '0x57Ab1ec28D129707052df4dF418D58a2D46d5f51',
+    TUSD: '0x0000000000085d4780B73119b644AE5ecd22b376',
+    UNI: '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984',
+    USDC: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+    USDT: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+    WBTC: '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599',
+    WETH: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+    YFI: '0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e',
+    ZRX: '0xE41d2489571d322189246DaFA5ebDe1F4699F498',
+    xSUSHI: '0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272'
+  }
+}
+getLendingPoolAddressesProvider: LendingPoolAddressesProvider.matic
+assetsWithoutQuoteCurrency {
+  DAI: '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063',
+  USDC: '0x2791bca1f2de4661ed88a30c99a7a9449aa84174',
+  FRAX: '0x45c32fa6df82ead1e2ef74d17b76547eddfaff89',
+  WBTC: '0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6'
+} {
+  DAI: '0xFC539A559e170f848323e19dfD66007520510085',
+  USDC: '0xfE4A8cc5b5B2366C1B58Bea3858e81843581b2F7',
+  FRAX: '0x00DBeB1e45485d53DF7C2F0dF1Aa0b6Dc30311d3',
+  WETH: '0xB4D962106206D88372C542C8ffeCACaefb728A60',
+  WBTC: '0xDE31F8bFBD8c84b5360CFACCa3539B938dd78ae6'
+}
+aggregatorAddressIndex 0
+aggregatorAddressIndex 1
+aggregatorAddressIndex 2
+aggregatorAddressIndex 4
+tokens, aggregators [
+  '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063',
+  '0x2791bca1f2de4661ed88a30c99a7a9449aa84174',
+  '0x45c32fa6df82ead1e2ef74d17b76547eddfaff89',
+  '0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6'
+] [
+  '0xFC539A559e170f848323e19dfD66007520510085',
+  '0xfE4A8cc5b5B2366C1B58Bea3858e81843581b2F7',
+  '0x00DBeB1e45485d53DF7C2F0dF1Aa0b6Dc30311d3',
+  '0xDE31F8bFBD8c84b5360CFACCa3539B938dd78ae6'
+]
+WaitForTx: 0x0af196f5ccc194a6036293b6cf1cecf737ad13e764654efb6df237aa1e316006
+*** AaveOracle ***
+
+Network: matic
+tx: 0x0af196f5ccc194a6036293b6cf1cecf737ad13e764654efb6df237aa1e316006
+contract address: 0x64395ba3C96B0CC3Bbaf49f8dB2A79D7be36D35A
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 600151
+
+******
+
+WaitForTx: 0xb0e6733de1cf400721804fe12fc7275ced4b5cedc8ecacac0097def208bee925
+WaitForTx: 0xb9c6dc43a482b99094d50c51ff1e495ff47cabd70d6cc84571f065af4930d5e1
+*** LendingRateOracle ***
+
+Network: matic
+tx: 0xb9c6dc43a482b99094d50c51ff1e495ff47cabd70d6cc84571f065af4930d5e1
+contract address: 0x5b0DE0F7bE9E1Be5c80e7D88ad40E871a1439FA8
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 345146
+
+******
+
+WaitForTx: 0xd570f6db7588962c52144eb9b9812862dde2363208412fc65e2f6ac927ad5788
+- Oracle borrow initalization in 1 txs
+WaitForTx: 0xf46a44dbef803ba5c0d537ec0d92152183a4c17e0bdc1cd8fbdecbe96ac96656
+  - Setted Oracle Borrow Rates for: DAI, USDC, FRAX, WETH, WBTC
+WaitForTx: 0x695723a3bb9fdc32bda8a8d65074e608a01ee53b8f739968ff841db65d3da062
+Aave Oracle: 0x64395ba3C96B0CC3Bbaf49f8dB2A79D7be36D35A
+Lending Rate Oracle: 0x5b0DE0F7bE9E1Be5c80e7D88ad40E871a1439FA8
+WaitForTx: 0x844988368731e47359622715acfc605adf4c49626dcc1105dcc0eb02deedda1d
+WaitForTx: 0x73334a3965b3a6cbeda157c9fecc485128b95f41dcd1e7d8e74dab6a9ee34e5f
+getLendingPoolAddressesProvider: LendingPoolAddressesProvider.matic
+WaitForTx: 0x22e5d87f9435b60fa8577eaceb73a2589003744e9d9c4c3320611cd7fa9fe42c
+*** AaveProtocolDataProvider ***
+
+Network: matic
+tx: 0x22e5d87f9435b60fa8577eaceb73a2589003744e9d9c4c3320611cd7fa9fe42c
+contract address: 0xE70eACeED9fBaf2Cb0Bc3E686cf166631f81620B
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 1555854
+
+******
+
+WaitForTx: 0x9c4b12176242543d224a289c5bb0b7d310897e8b56a9174559cbfd3c6122c000
+*** WETHGateway ***
+
+Network: matic
+tx: 0x9c4b12176242543d224a289c5bb0b7d310897e8b56a9174559cbfd3c6122c000
+contract address: 0x4252B816fB981b3E639B7DE8Efeaccfb96d1A357
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 1217391
+
+******
+
+WETHGateway.address 0x4252B816fB981b3E639B7DE8Efeaccfb96d1A357
+        Finished WETHGateway deployment
+6. Initialize lending pool
+getLendingPoolAddressesProvider: LendingPoolAddressesProvider.matic
+getLendingPoolAddressesProvider: LendingPoolAddressesProvider.matic
+WaitForTx: 0x5c3b98372a3a07aea63365ba39f5da118d02a18349d0db6084e1f278d7c1160c
+*** DefaultReserveInterestRateStrategy ***
+
+Network: matic
+tx: 0x5c3b98372a3a07aea63365ba39f5da118d02a18349d0db6084e1f278d7c1160c
+contract address: 0xC086BfF3f8F9Cba98c3aFea7d90A9684EE5D8319
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 790705
+
+******
+
+AToken
+WaitForTx: 0xb053e813924ce29fcfba150f2ca7b9cfd6ef60cb0ae738234893ce0fb171accf
+*** DefaultReserveInterestRateStrategy ***
+
+Network: matic
+tx: 0xb053e813924ce29fcfba150f2ca7b9cfd6ef60cb0ae738234893ce0fb171accf
+contract address: 0x4FdBf4d38d748cF4bce91c0052f0d40e83DD75B1
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 790705
+
+******
+
+AToken
+WaitForTx: 0x17e354a73d2569846e19545b4ddd80ae58a19c5e055d7c1bd48b41e0e2835c21
+*** DefaultReserveInterestRateStrategy ***
+
+Network: matic
+tx: 0x17e354a73d2569846e19545b4ddd80ae58a19c5e055d7c1bd48b41e0e2835c21
+contract address: 0xF4F05bBdcA5ad2e2E55dA9D9563FeBf159d226c8
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 790501
+
+******
+
+AToken
+- Skipping init of WFTM due token address is not set at markets config
+WaitForTx: 0xeec790ca2dfabb623723e5da8493459fb9c30d52d67667003ed70ccf6008d0a8
+*** DefaultReserveInterestRateStrategy ***
+
+Network: matic
+tx: 0xeec790ca2dfabb623723e5da8493459fb9c30d52d67667003ed70ccf6008d0a8
+contract address: 0x7E3C984B214830A40bFEEA09E396e0F1eB544c81
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 790705
+
+******
+
+AToken
+WaitForTx: 0x38fb81ff1c84cca9af5970e079a29d6969cd64ea0c09c22e96dacd2054947689
+*** DefaultReserveInterestRateStrategy ***
+
+Network: matic
+tx: 0x38fb81ff1c84cca9af5970e079a29d6969cd64ea0c09c22e96dacd2054947689
+contract address: 0xaCA534914BD49BEC9B6B61951FDD27a32a59A6BA
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 790705
+
+******
+
+AToken
+- Reserves initialization in 5 txs
+ChunkedInitInputParams: [
+  {
+    aTokenImpl: '0x2e45c9F7Ce1F99eF9DadB8e07982Fd5971821145',
+    stableDebtTokenImpl: '0x889aF9C29ec0B758d75Df9B45947D5e19B48b2a6',
+    variableDebtTokenImpl: '0x3771766a6Ae8B6b42816173951c2A86a71424F43',
+    underlyingAssetDecimals: '18',
+    interestRateStrategyAddress: '0xC086BfF3f8F9Cba98c3aFea7d90A9684EE5D8319',
+    underlyingAsset: '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063',
+    treasury: '0x80ca26A41120fFCCA849D83911F566268e78534b',
+    incentivesController: '0x0000000000000000000000000000000000000000',
+    underlyingAssetName: 'DAI',
+    aTokenName: 'Aave interest bearing DAI',
+    aTokenSymbol: 'aDAI',
+    variableDebtTokenName: 'Aave variable debt bearing DAI',
+    variableDebtTokenSymbol: 'variableDebtDAI',
+    stableDebtTokenName: 'Aave stable debt bearing DAI',
+    stableDebtTokenSymbol: 'stableDebtDAI',
+    params: '0x10'
+  }
+]
+WaitForTx: 0xf7116ae4e268d7f713acc28c2fd1381a49907bf3402c661d0c1a77ee3cc10c31
+  - Reserve ready for: DAI
+    * gasUsed 1994678
+ChunkedInitInputParams: [
+  {
+    aTokenImpl: '0x2e45c9F7Ce1F99eF9DadB8e07982Fd5971821145',
+    stableDebtTokenImpl: '0x889aF9C29ec0B758d75Df9B45947D5e19B48b2a6',
+    variableDebtTokenImpl: '0x3771766a6Ae8B6b42816173951c2A86a71424F43',
+    underlyingAssetDecimals: '6',
+    interestRateStrategyAddress: '0x4FdBf4d38d748cF4bce91c0052f0d40e83DD75B1',
+    underlyingAsset: '0x2791bca1f2de4661ed88a30c99a7a9449aa84174',
+    treasury: '0x80ca26A41120fFCCA849D83911F566268e78534b',
+    incentivesController: '0x0000000000000000000000000000000000000000',
+    underlyingAssetName: 'USDC',
+    aTokenName: 'Aave interest bearing USDC',
+    aTokenSymbol: 'aUSDC',
+    variableDebtTokenName: 'Aave variable debt bearing USDC',
+    variableDebtTokenSymbol: 'variableDebtUSDC',
+    stableDebtTokenName: 'Aave stable debt bearing USDC',
+    stableDebtTokenSymbol: 'stableDebtUSDC',
+    params: '0x10'
+  }
+]
+WaitForTx: 0x2f32df005ec7ea029b294ced438d7f4daf65009e4e4755fbf7fe73541894b3ff
+  - Reserve ready for: USDC
+    * gasUsed 1979650
+ChunkedInitInputParams: [
+  {
+    aTokenImpl: '0x2e45c9F7Ce1F99eF9DadB8e07982Fd5971821145',
+    stableDebtTokenImpl: '0x889aF9C29ec0B758d75Df9B45947D5e19B48b2a6',
+    variableDebtTokenImpl: '0x3771766a6Ae8B6b42816173951c2A86a71424F43',
+    underlyingAssetDecimals: '18',
+    interestRateStrategyAddress: '0xF4F05bBdcA5ad2e2E55dA9D9563FeBf159d226c8',
+    underlyingAsset: '0x45c32fa6df82ead1e2ef74d17b76547eddfaff89',
+    treasury: '0x80ca26A41120fFCCA849D83911F566268e78534b',
+    incentivesController: '0x0000000000000000000000000000000000000000',
+    underlyingAssetName: 'FRAX',
+    aTokenName: 'Aave interest bearing FRAX',
+    aTokenSymbol: 'aFRAX',
+    variableDebtTokenName: 'Aave variable debt bearing FRAX',
+    variableDebtTokenSymbol: 'variableDebtFRAX',
+    stableDebtTokenName: 'Aave stable debt bearing FRAX',
+    stableDebtTokenSymbol: 'stableDebtFRAX',
+    params: '0x10'
+  }
+]
+WaitForTx: 0xb197dd293aa499d77d8327f36a8eec12ecf26c6e388799a1bb4b5291b8d71815
+  - Reserve ready for: FRAX
+    * gasUsed 1979662
+ChunkedInitInputParams: [
+  {
+    aTokenImpl: '0x2e45c9F7Ce1F99eF9DadB8e07982Fd5971821145',
+    stableDebtTokenImpl: '0x889aF9C29ec0B758d75Df9B45947D5e19B48b2a6',
+    variableDebtTokenImpl: '0x3771766a6Ae8B6b42816173951c2A86a71424F43',
+    underlyingAssetDecimals: '18',
+    interestRateStrategyAddress: '0x7E3C984B214830A40bFEEA09E396e0F1eB544c81',
+    underlyingAsset: '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619',
+    treasury: '0x80ca26A41120fFCCA849D83911F566268e78534b',
+    incentivesController: '0x0000000000000000000000000000000000000000',
+    underlyingAssetName: 'WETH',
+    aTokenName: 'Aave interest bearing WETH',
+    aTokenSymbol: 'aWETH',
+    variableDebtTokenName: 'Aave variable debt bearing WETH',
+    variableDebtTokenSymbol: 'variableDebtWETH',
+    stableDebtTokenName: 'Aave stable debt bearing WETH',
+    stableDebtTokenSymbol: 'stableDebtWETH',
+    params: '0x10'
+  }
+]
+WaitForTx: 0x8115802186612ac3230c2811fbcb9d7174e16c19829ae71c2716e965a54e616c
+  - Reserve ready for: WETH
+    * gasUsed 1979662
+ChunkedInitInputParams: [
+  {
+    aTokenImpl: '0x2e45c9F7Ce1F99eF9DadB8e07982Fd5971821145',
+    stableDebtTokenImpl: '0x889aF9C29ec0B758d75Df9B45947D5e19B48b2a6',
+    variableDebtTokenImpl: '0x3771766a6Ae8B6b42816173951c2A86a71424F43',
+    underlyingAssetDecimals: '8',
+    interestRateStrategyAddress: '0xaCA534914BD49BEC9B6B61951FDD27a32a59A6BA',
+    underlyingAsset: '0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6',
+    treasury: '0x80ca26A41120fFCCA849D83911F566268e78534b',
+    incentivesController: '0x0000000000000000000000000000000000000000',
+    underlyingAssetName: 'WBTC',
+    aTokenName: 'Aave interest bearing WBTC',
+    aTokenSymbol: 'aWBTC',
+    variableDebtTokenName: 'Aave variable debt bearing WBTC',
+    variableDebtTokenSymbol: 'variableDebtWBTC',
+    stableDebtTokenName: 'Aave stable debt bearing WBTC',
+    stableDebtTokenSymbol: 'stableDebtWBTC',
+    params: '0x10'
+  }
+]
+WaitForTx: 0x8817b539b5f94790f846ae161a7c69afdb93a0a7a8bf17a4f52e998735182ebb
+  - Reserve ready for: WBTC
+    * gasUsed 1979662
+getLendingPoolAddressesProvider: LendingPoolAddressesProvider.matic
+- Skipping init of WFTM due token address is not set at markets config
+WaitForTx: 0x09d4ee138b6205246e1c7c5110d2e3d8187036d8ff452f8c19480378bc75d66d
+- Configure reserves in 1 txs
+WaitForTx: 0x8f4c30442975525b784f785d6d69389eea6d1da9ad94c644e34b03f12cfe650c
+  - Init for: DAI, USDC, FRAX, WETH, WBTC
+WaitForTx: 0x27e30cc5861007723222cc57ce210dcd7e53b66ebc932a93534451485ecb645a
+WaitForTx: 0x9b5912220dc67ebcedfc437f7e96ee8610a28a9f5b80d9788462b6b3eace4ab9
+*** LendingPoolCollateralManager ***
+
+Network: matic
+tx: 0x9b5912220dc67ebcedfc437f7e96ee8610a28a9f5b80d9788462b6b3eace4ab9
+contract address: 0x702153C3719853260f012f2ac5B5fD690189Aa32
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 2372773
+
+******
+
+        Setting lending pool collateral manager implementation with address 0x702153C3719853260f012f2ac5B5fD690189Aa32
+WaitForTx: 0x559eb91c7dfc777ea6df9bac9f333b249106bf4d390d8801f17fedc4022b5eea
+        Setting AaveProtocolDataProvider at AddressesProvider at id: 0x01 0x702153C3719853260f012f2ac5B5fD690189Aa32
+WaitForTx: 0x11f957a0624dc17f25d1d2be1d6503124d3d698221db4d2fb79e2d975737a153
+WaitForTx: 0x6bd44659bce3cf2ccfd90de7ab0111de5ceedab173263a13fccfdc226786ae46
+*** WalletBalanceProvider ***
+
+Network: matic
+tx: 0x6bd44659bce3cf2ccfd90de7ab0111de5ceedab173263a13fccfdc226786ae46
+contract address: 0x0bAdC195CD296b3f4326Bf3026fDd81f880FE827
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 627128
+
+******
+
+WaitForTx: 0x10cc1b6faee37572dd88eae511ec56b1c81575964008b71d446e207ac77afafc
+*** UiPoolDataProvider ***
+
+Network: matic
+tx: 0x10cc1b6faee37572dd88eae511ec56b1c81575964008b71d446e207ac77afafc
+contract address: 0x4dd90cFac8395De410A76F87602F1F0ae866Cb5C
+deployer address: 0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE
+gas price: 35000000000
+gas used: 1955506
+
+******
+
+UiPoolDataProvider deployed at: 0x4dd90cFac8395De410A76F87602F1F0ae866Cb5C
+GATEWAY 0x4252B816fB981b3E639B7DE8Efeaccfb96d1A357
+Error: cannot estimate gas; transaction may fail or may require manual gas limit (error={"name":"ProviderError","code":-32000,"_isProviderError":true}, method="estimateGas", transaction={"from":"0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE","to":"0x4252B816fB981b3E639B7DE8Efeaccfb96d1A357","data":"0xfd14952900000000000000000000000075020eb7fde1b4f6e71fb107862ee7555eec89de","accessList":null}, code=UNPREDICTABLE_GAS_LIMIT, version=providers/5.1.2)
+    at Logger.makeError (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/@ethersproject/logger/src.ts/index.ts:205:28)
+    at Logger.throwError (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/@ethersproject/logger/src.ts/index.ts:217:20)
+    at checkError (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/@ethersproject/providers/src.ts/json-rpc-provider.ts:76:16)
+    at EthersProviderWrapper.<anonymous> (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/@ethersproject/providers/src.ts/json-rpc-provider.ts:512:20)
+    at step (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/@ethersproject/providers/lib/json-rpc-provider.js:48:23)
+    at Object.throw (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/@ethersproject/providers/lib/json-rpc-provider.js:29:53)
+    at rejected (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/@ethersproject/providers/lib/json-rpc-provider.js:21:65)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) {
+  reason: 'cannot estimate gas; transaction may fail or may require manual gas limit',
+  code: 'UNPREDICTABLE_GAS_LIMIT',
+  error: ProviderError: execution reverted
+      at HttpProvider.request (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/hardhat/src/internal/core/providers/http.ts:46:19)
+      at LocalAccountsProvider.request (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/hardhat/src/internal/core/providers/accounts.ts:142:34)
+      at runMicrotasks (<anonymous>)
+      at processTicksAndRejections (node:internal/process/task_queues:96:5)
+      at EthersProviderWrapper.send (/Users/mihailkrukov/Source/UwU/aave-protocol-v2/node_modules/@nomiclabs/hardhat-ethers/src/internal/ethers-provider-wrapper.ts:13:20),
+  method: 'estimateGas',
+  transaction: {
+    from: '0x7ec8F119aFAE2e4964DFb9170cA13F6c7FB9a1CE',
+    to: '0x4252B816fB981b3E639B7DE8Efeaccfb96d1A357',
+    data: '0xfd14952900000000000000000000000075020eb7fde1b4f6e71fb107862ee7555eec89de',
+    accessList: null
+  }
+}
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+mihailkrukov@Mihails-MacBook-Pro aave-protocol-v2 % 

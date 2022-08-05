@@ -286,12 +286,15 @@ export type iAssetsWithoutUSD<T> = Omit<iAssetBase<T>, 'USD'>;
 
 export type iAavePoolAssets<T> = Pick<
   iAssetsWithoutUSD<T>,
-  'DAI' | 'USDC' | 'FRAX' | 'WFTM' | 'WETH' | 'WBTC' | 'SPELL'
+  'DAI' | 'USDC' | 'FRAX' | 'WFTM' | 'WETH' | 'WBTC'
 >;
 
 export type iLpPoolAssets<T> = Pick<iAssetsWithoutUSD<T>, 'DAI'>;
 
-export type iMaticPoolAssets<T> = Pick<iAssetsWithoutUSD<T>, 'DAI'>;
+export type iMaticPoolAssets<T> = Pick<
+  iAssetsWithoutUSD<T>,
+  'DAI' | 'USDC' | 'FRAX' | 'WFTM' | 'WETH' | 'WBTC'
+>;
 
 export type iXDAIPoolAssets<T> = Pick<iAssetsWithoutUSD<T>, 'DAI'>;
 

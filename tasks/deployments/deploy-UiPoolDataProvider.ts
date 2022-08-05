@@ -1,4 +1,3 @@
-import { task } from 'hardhat/config';
 import {
   eAvalancheNetwork,
   eContractid,
@@ -6,8 +5,10 @@ import {
   eNetwork,
   ePolygonNetwork,
 } from '../../helpers/types';
+
 import { deployUiPoolDataProvider } from '../../helpers/contracts-deployments';
 import { exit } from 'process';
+import { task } from 'hardhat/config';
 
 task(`deploy-${eContractid.UiPoolDataProvider}`, `Deploys the UiPoolDataProvider contract`)
   .addFlag('verify', 'Verify UiPoolDataProvider contract via Etherscan API.')
@@ -30,8 +31,10 @@ task(`deploy-${eContractid.UiPoolDataProvider}`, `Deploys the UiPoolDataProvider
         aaveOracle: '0xa50ba011c48153de246e5192c8f9258a2ba79ca9',
       },
       [ePolygonNetwork.matic]: {
-        incentivesController: '0x357D51124f59836DeD84c8a1730D72B749d8BC23',
-        aaveOracle: '0x0229F777B0fAb107F9591a41d5F02E4e98dB6f2d',
+        // incentivesController: '0x357D51124f59836DeD84c8a1730D72B749d8BC23',
+        // aaveOracle: '0x0229F777B0fAb107F9591a41d5F02E4e98dB6f2d',
+        incentivesController: '',
+        aaveOracle: '',
       },
       [ePolygonNetwork.mumbai]: {
         incentivesController: '0xd41aE58e803Edf4304334acCE4DC4Ec34a63C644',

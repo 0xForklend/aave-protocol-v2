@@ -2,11 +2,13 @@ import { IMaticConfiguration, ePolygonNetwork } from '../../helpers/types';
 import {
   strategyAAVE,
   strategyDAI,
+  strategyFRAX,
   strategyMATIC,
   strategyUSDC,
   strategyUSDT,
   strategyWBTC,
   strategyWETH,
+  strategyWFTM,
 } from './reservesConfigs';
 
 import { CommonsConfig } from './commons';
@@ -21,16 +23,19 @@ export const MaticConfig: IMaticConfiguration = {
   ProviderId: 3,
   ReservesConfig: {
     DAI: strategyDAI,
+    USDC: strategyUSDC,
+    FRAX: strategyFRAX,
+    WFTM: strategyWFTM,
+    WETH: strategyWETH,
+    WBTC: strategyWBTC,
   },
   ReserveAssets: {
     [ePolygonNetwork.matic]: {
-      DAI: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
-      USDC: '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
-      USDT: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
-      WBTC: '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6',
-      WETH: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
-      WMATIC: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
-      AAVE: '0xD6DF932A45C0f255f85145f286eA0b292B21C90B',
+      DAI: '0xFC539A559e170f848323e19dfD66007520510085',
+      USDC: '0xfE4A8cc5b5B2366C1B58Bea3858e81843581b2F7',
+      FRAX: '0x00DBeB1e45485d53DF7C2F0dF1Aa0b6Dc30311d3',
+      WETH: '0xB4D962106206D88372C542C8ffeCACaefb728A60',
+      WBTC: '0xDE31F8bFBD8c84b5360CFACCa3539B938dd78ae6',
     },
     [ePolygonNetwork.mumbai]: {
       // Mock tokens with a simple "mint" external function, except wmatic

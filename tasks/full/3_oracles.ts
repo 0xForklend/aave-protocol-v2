@@ -56,8 +56,6 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
       let aaveOracle: AaveOracle;
       let lendingRateOracle: LendingRateOracle;
 
-      console.log('tokens, aggregators', tokens, aggregators);
-
       if (notFalsyOrZeroAddress(aaveOracleAddress)) {
         aaveOracle = await await getAaveOracle(aaveOracleAddress);
         await waitForTx(await aaveOracle.setAssetSources(tokens, aggregators));

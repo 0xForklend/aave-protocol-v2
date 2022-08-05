@@ -1,13 +1,14 @@
 // import BigNumber from 'bignumber.js';
 // import { oneRay } from '../../helpers/constants';
-import { eContractid, IReserveParams } from '../../helpers/types';
+import { IReserveParams, eContractid } from '../../helpers/types';
 import {
-  rateStrategyStableTwo,
-  rateStrategyStableThree,
-  rateStrategyWETH,
   rateStrategyAAVE,
+  rateStrategyStableThree,
+  rateStrategyStableTwo,
+  rateStrategyVolatileFour,
   rateStrategyVolatileOne,
   rateStrategyVolatileTwo,
+  rateStrategyWETH,
 } from './rateStrategies';
 
 export const strategyDAI: IReserveParams = {
@@ -92,4 +93,40 @@ export const strategyAAVE: IReserveParams = {
   reserveDecimals: '18',
   aTokenImpl: eContractid.AToken,
   reserveFactor: '0',
+};
+
+export const strategyFRAX: IReserveParams = {
+  strategy: rateStrategyVolatileFour,
+  baseLTVAsCollateral: '2500',
+  liquidationThreshold: '4500',
+  liquidationBonus: '11500',
+  borrowingEnabled: true,
+  stableBorrowRateEnabled: false,
+  reserveDecimals: '18',
+  aTokenImpl: eContractid.AToken,
+  reserveFactor: '3500',
+};
+
+export const strategyWFTM: IReserveParams = {
+  strategy: rateStrategyWETH,
+  baseLTVAsCollateral: '8000',
+  liquidationThreshold: '8250',
+  liquidationBonus: '10500',
+  borrowingEnabled: true,
+  stableBorrowRateEnabled: true,
+  reserveDecimals: '18',
+  aTokenImpl: eContractid.AToken,
+  reserveFactor: '1000',
+};
+
+export const strategySPELL: IReserveParams = {
+  strategy: rateStrategyVolatileFour,
+  baseLTVAsCollateral: '2500',
+  liquidationThreshold: '4500',
+  liquidationBonus: '11500',
+  borrowingEnabled: true,
+  stableBorrowRateEnabled: false,
+  reserveDecimals: '18',
+  aTokenImpl: eContractid.AToken,
+  reserveFactor: '3500',
 };

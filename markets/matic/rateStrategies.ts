@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js';
-import { oneRay } from '../../helpers/constants';
 import { IInterestRateStrategyParams } from '../../helpers/types';
+import { oneRay } from '../../helpers/constants';
 
 // BUSD SUSD
 export const rateStrategyStableOne: IInterestRateStrategyParams = {
@@ -88,4 +88,14 @@ export const rateStrategyVolatileThree: IInterestRateStrategyParams = {
   variableRateSlope2: new BigNumber(3).multipliedBy(oneRay).toFixed(),
   stableRateSlope1: new BigNumber(0.1).multipliedBy(oneRay).toFixed(),
   stableRateSlope2: new BigNumber(3).multipliedBy(oneRay).toFixed(),
+}
+
+export const rateStrategyVolatileFour: IInterestRateStrategyParams = {
+  name: "rateStrategyVolatileFour",
+  optimalUtilizationRate: new BigNumber(0.45).multipliedBy(oneRay).toFixed(),
+  baseVariableBorrowRate: '0',
+  variableRateSlope1: new BigNumber(0.07).multipliedBy(oneRay).toFixed(),
+  variableRateSlope2: new BigNumber(3).multipliedBy(oneRay).toFixed(),
+  stableRateSlope1: '0',
+  stableRateSlope2: '0',
 }

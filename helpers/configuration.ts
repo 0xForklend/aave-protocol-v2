@@ -136,7 +136,6 @@ export const getLendingRateOracles = (poolConfig: IBaseConfiguration) => {
     LendingRateOracleRatesCommon,
     ReserveAssets,
   } = poolConfig;
-
   const network = process.env.FORK ? process.env.FORK : DRE.network.name;
   return filterMapBy(LendingRateOracleRatesCommon, (key) =>
     Object.keys(ReserveAssets[network]).includes(key)
@@ -150,6 +149,9 @@ export const getQuoteCurrency = async (config: IBaseConfiguration) => {
       return getWethAddress(config);
     case 'USD':
       return config.ProtocolGlobalParams.UsdAddress;
+    case 'MATIC':
+    case 'WMATIC':
+      return '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270';
     case 'FTM':
       return '0x7f0D8bB948bc68a2c1BC2fd2933b7986db67Fd73';
     default:

@@ -1,4 +1,4 @@
-import { IAaveConfiguration, eArbitrumNetwork, eEthereumNetwork, eFantomNetwork } from '../../helpers/types';
+import { IAaveConfiguration, eArbitrumNetwork, eEthereumNetwork, eFantomNetwork, ePolygonNetwork } from '../../helpers/types';
 import { ZERO_ADDRESS, oneRay } from '../../helpers/constants';
 import {
   strategyAAVE,
@@ -44,7 +44,7 @@ export const AaveConfig: IAaveConfiguration = {
     WFTM: strategyWFTM,
     WETH: strategyWETH,
     WBTC: strategyWBTC,
-    SPELL: strategySPELL,
+    // SPELL: strategySPELL,
     // AAVE: strategyAAVE,
     // BAT: strategyBAT,
     // BUSD: strategyBUSD,
@@ -64,6 +64,14 @@ export const AaveConfig: IAaveConfiguration = {
     // xSUSHI: strategyXSUSHI,
   },
   ReserveAssets: {
+    [ePolygonNetwork.matic]: {
+      DAI: '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063',
+      USDC: '0x2791bca1f2de4661ed88a30c99a7a9449aa84174',
+      FRAX: '0x45c32fa6df82ead1e2ef74d17b76547eddfaff89',
+      // WETH: '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619',
+      WETH: '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270',
+      WBTC: '0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6',
+    },
     [eEthereumNetwork.buidlerevm]: {},
     [eEthereumNetwork.hardhat]: {},
     [eEthereumNetwork.coverage]: {},
