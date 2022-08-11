@@ -1,13 +1,14 @@
-import BigNumber from 'bignumber.js';
+import { ICommonConfiguration, eEthereumNetwork } from '../../helpers/types';
 import {
-  oneEther,
-  oneRay,
+  MOCK_CHAINLINK_AGGREGATORS_PRICES,
   RAY,
   ZERO_ADDRESS,
-  MOCK_CHAINLINK_AGGREGATORS_PRICES,
+  oneEther,
+  oneRay,
   oneUsd,
 } from '../../helpers/constants';
-import { ICommonConfiguration, eEthereumNetwork } from '../../helpers/types';
+
+import BigNumber from 'bignumber.js';
 
 // ----------------
 // PROTOCOL GLOBAL PARAMS
@@ -135,7 +136,7 @@ export const CommonsConfig: ICommonConfiguration = {
   ProviderRegistry: {
     [eEthereumNetwork.kovan]: '0x1E40B561EC587036f9789aF83236f057D1ed2A90',
     [eEthereumNetwork.ropsten]: '',
-    [eEthereumNetwork.main]: '0x52D306e36E3B6B02c153d0266ff0f85d18BCD413',
+    [eEthereumNetwork.main]: '', // 0x52D306e36E3B6B02c153d0266ff0f85d18BCD413
     [eEthereumNetwork.coverage]: '',
     [eEthereumNetwork.hardhat]: '',
     [eEthereumNetwork.buidlerevm]: '',
@@ -144,7 +145,7 @@ export const CommonsConfig: ICommonConfiguration = {
   ProviderRegistryOwner: {
     [eEthereumNetwork.kovan]: '0x85e4A467343c0dc4aDAB74Af84448D9c45D8ae6F',
     [eEthereumNetwork.ropsten]: '',
-    [eEthereumNetwork.main]: '0xB9062896ec3A615a4e4444DF183F0531a77218AE',
+    [eEthereumNetwork.main]: '', // 0xB9062896ec3A615a4e4444DF183F0531a77218AE
     [eEthereumNetwork.coverage]: '',
     [eEthereumNetwork.hardhat]: '',
     [eEthereumNetwork.buidlerevm]: '',
@@ -165,7 +166,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.buidlerevm]: '',
     [eEthereumNetwork.kovan]: '0x9269b6453d0d75370c4c85e5a42977a53efdb72a',
     [eEthereumNetwork.ropsten]: '',
-    [eEthereumNetwork.main]: '0xbd4765210d4167CE2A5b87280D9E8Ee316D5EC7C',
+    [eEthereumNetwork.main]: '', // 0xbd4765210d4167CE2A5b87280D9E8Ee316D5EC7C
     [eEthereumNetwork.tenderly]: '0xbd4765210d4167CE2A5b87280D9E8Ee316D5EC7C',
   },
   LendingPoolConfigurator: {
@@ -201,7 +202,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.hardhat]: '',
     [eEthereumNetwork.kovan]: '0x971efe90088f21dc6a36f610ffed77fc19710708',
     [eEthereumNetwork.ropsten]: '0xeba2ea67942b8250d870b12750b594696d02fc9c',
-    [eEthereumNetwork.main]: '0xe3d9988f676457123c5fd01297605efdd0cba1ae',
+    [eEthereumNetwork.main]: '', // 0xe3d9988f676457123c5fd01297605efdd0cba1ae
     [eEthereumNetwork.tenderly]: '0xe3d9988f676457123c5fd01297605efdd0cba1ae',
   },
   AaveOracle: {

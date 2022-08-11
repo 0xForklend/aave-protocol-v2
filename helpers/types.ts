@@ -278,6 +278,8 @@ export interface iAssetBase<T> {
   // WETH: T,
   // WBTC: T,
   SPELL: T;
+  SIFU: T;
+  CVX_WETH: T;
 }
 
 export type iAssetsWithoutETH<T> = Omit<iAssetBase<T>, 'ETH'>;
@@ -286,7 +288,7 @@ export type iAssetsWithoutUSD<T> = Omit<iAssetBase<T>, 'USD'>;
 
 export type iAavePoolAssets<T> = Pick<
   iAssetsWithoutUSD<T>,
-  'DAI' | 'USDC' | 'FRAX' | 'WFTM' | 'WETH' | 'WBTC'
+  'DAI' | 'USDC' | 'FRAX' | 'WETH' | 'WBTC' | 'SPELL' | 'SIFU' | 'CVX_WETH'
 >;
 
 export type iLpPoolAssets<T> = Pick<iAssetsWithoutUSD<T>, 'DAI'>;

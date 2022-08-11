@@ -37,6 +37,7 @@
     "aave:docker:full:migration": "npm run compile && npm run hardhat:docker -- aave:mainnet --skip-registry",
     "aave:kovan:full:migration": "npm run compile && npm run hardhat:kovan -- aave:mainnet --skip-registry",
 
+    "aave:mainnet:full:migration": "npm run compile && npm run hardhat:main -- aave:mainnet",
     "aave:matic:full:migration": "npm run compile && npm run hardhat:matic -- aave:mainnet --skip-registry",
     "aave:matic:full:migration:add-registry": "npm run compile && npm run hardhat:matic -- aave:mainnet",
 

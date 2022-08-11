@@ -581,7 +581,9 @@ export const authorizeWETHGateway = async (
   console.log('AuthorizeWETHGateway', wethGateWay, lendingPool);
   return await new WETHGatewayFactory(await getFirstSigner())
     .attach(wethGateWay)
-    .authorizeLendingPool(lendingPool);
+    .authorizeLendingPool(lendingPool, {
+      gasPrice: 80 * 1000 * 1000 * 1000,
+    });
 };
 
 export const deployMockStableDebtToken = async (
