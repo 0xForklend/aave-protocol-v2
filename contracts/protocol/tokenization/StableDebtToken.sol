@@ -8,6 +8,7 @@ import {IStableDebtToken} from '../../interfaces/IStableDebtToken.sol';
 import {ILendingPool} from '../../interfaces/ILendingPool.sol';
 import {IAaveIncentivesController} from '../../interfaces/IAaveIncentivesController.sol';
 import {Errors} from '../libraries/helpers/Errors.sol';
+import {SafeMath} from '../../dependencies/openzeppelin/contracts/SafeMath.sol';
 
 /**
  * @title StableDebtToken
@@ -17,6 +18,7 @@ import {Errors} from '../libraries/helpers/Errors.sol';
  **/
 contract StableDebtToken is IStableDebtToken, DebtTokenBase {
   using WadRayMath for uint256;
+  using SafeMath for uint256;
 
   uint256 public constant DEBT_TOKEN_REVISION = 0x1;
 
@@ -410,7 +412,7 @@ contract StableDebtToken is IStableDebtToken, DebtTokenBase {
     _balances[account] = oldAccountBalance.add(amount);
 
     if (address(_incentivesController) != address(0)) {
-      _incentivesController.handleAction(account, oldTotalSupply, oldAccountBalance);
+      _incentivesController.handleAction(account, oldAccountBalance, oldTotalSupply);
     }
   }
 
@@ -429,7 +431,7 @@ contract StableDebtToken is IStableDebtToken, DebtTokenBase {
     _balances[account] = oldAccountBalance.sub(amount, Errors.SDT_BURN_EXCEEDS_BALANCE);
 
     if (address(_incentivesController) != address(0)) {
-      _incentivesController.handleAction(account, oldTotalSupply, oldAccountBalance);
+      _incentivesController.handleAction(account, oldAccountBalance, oldTotalSupply);
     }
   }
 }
