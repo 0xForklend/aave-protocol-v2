@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js';
-import { oneRay } from '../../helpers/constants';
 import { IInterestRateStrategyParams } from '../../helpers/types';
+import { oneRay } from '../../helpers/constants';
 
 // BUSD SUSD
 export const rateStrategyStableOne: IInterestRateStrategyParams = {
@@ -13,7 +13,7 @@ export const rateStrategyStableOne: IInterestRateStrategyParams = {
   stableRateSlope2: '0',
 };
 
-// DAI TUSD
+// DAI
 export const rateStrategyStableTwo: IInterestRateStrategyParams = {
   name: "rateStrategyStableTwo",
   optimalUtilizationRate: new BigNumber(0.8).multipliedBy(oneRay).toFixed(),
@@ -44,17 +44,6 @@ export const rateStrategyWETH: IInterestRateStrategyParams = {
   variableRateSlope2: new BigNumber(1).multipliedBy(oneRay).toFixed(),
   stableRateSlope1: new BigNumber(0.1).multipliedBy(oneRay).toFixed(),
   stableRateSlope2: new BigNumber(1).multipliedBy(oneRay).toFixed(),
-}
-
-// AAVE
-export const rateStrategyAAVE: IInterestRateStrategyParams = {
-  name: "rateStrategyAAVE",
-  optimalUtilizationRate: new BigNumber(0.45).multipliedBy(oneRay).toFixed(),
-  baseVariableBorrowRate: '0',
-  variableRateSlope1: '0',
-  variableRateSlope2: '0',
-  stableRateSlope1: '0',
-  stableRateSlope2: '0',
 }
 
 // BAT ENJ LINK MANA MKR REN YFI ZRX
@@ -89,7 +78,6 @@ export const rateStrategyVolatileThree: IInterestRateStrategyParams = {
   stableRateSlope1: new BigNumber(0.1).multipliedBy(oneRay).toFixed(),
   stableRateSlope2: new BigNumber(3).multipliedBy(oneRay).toFixed(),
 }
-
 
 export const rateStrategyVolatileFour: IInterestRateStrategyParams = {
   name: "rateStrategyVolatileFour",

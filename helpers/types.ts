@@ -279,6 +279,9 @@ export interface iAssetBase<T> {
   // WBTC: T,
   SPELL: T;
   SIFU: T;
+  MIM: T;
+  LUSD: T;
+  CRV: T;
   CVX_WETH: T;
 }
 
@@ -288,7 +291,7 @@ export type iAssetsWithoutUSD<T> = Omit<iAssetBase<T>, 'USD'>;
 
 export type iAavePoolAssets<T> = Pick<
   iAssetsWithoutUSD<T>,
-  'DAI' | 'USDC' | 'FRAX' | 'WETH' | 'WBTC' | 'SPELL' | 'SIFU' | 'CVX_WETH'
+  'DAI' | 'USDC' | 'FRAX' | 'WETH' | 'WBTC' | 'SPELL' | 'SIFU' | 'MIM' | 'CRV' | 'CVX_WETH'
 >;
 
 export type iLpPoolAssets<T> = Pick<iAssetsWithoutUSD<T>, 'DAI'>;
@@ -356,6 +359,7 @@ export interface IReserveParams extends IReserveBorrowParams, IReserveCollateral
   aTokenImpl: eContractid;
   reserveFactor: string;
   strategy: IInterestRateStrategyParams;
+  allocPoint: string;
 }
 
 export interface IInterestRateStrategyParams {

@@ -25,7 +25,6 @@ import {IMultiFeeDistribution} from '../../interfaces/IMultiFeeDistribution.sol'
  * @author Aave
  * @dev Implements the configuration methods for the Aave protocol
  **/
-
 contract LendingPoolConfigurator is VersionedInitializable, ILendingPoolConfigurator {
   using SafeMath for uint256;
   using PercentageMath for uint256;
@@ -87,7 +86,6 @@ contract LendingPoolConfigurator is VersionedInitializable, ILendingPoolConfigur
         )
       );
     incentivesController.addPool(aTokenProxyAddress, input.allocPoint);
-    IMultiFeeDistribution(input.treasury).addReward(aTokenProxyAddress);
 
     address stableDebtTokenProxyAddress =
       _initTokenWithProxy(

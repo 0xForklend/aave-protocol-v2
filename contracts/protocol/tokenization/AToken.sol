@@ -37,9 +37,7 @@ contract AToken is
 
   bytes32 public DOMAIN_SEPARATOR;
 
-  ILendingPool internal _pool;
   address internal _treasury;
-  address internal _underlyingAsset;
   IAaveIncentivesController internal _incentivesController;
 
   modifier onlyLendingPool {
@@ -273,7 +271,7 @@ contract AToken is
   /**
    * @dev Returns the address of the underlying asset of this aToken (E.g. WETH for aWETH)
    **/
-  function UNDERLYING_ASSET_ADDRESS() public override view returns (address) {
+  function UNDERLYING_ASSET_ADDRESS() public view override returns (address) {
     return _underlyingAsset;
   }
 

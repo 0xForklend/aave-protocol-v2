@@ -61,6 +61,7 @@ export const initReservesByHelper = async (
     underlyingAsset: string;
     treasury: string;
     incentivesController: string;
+    allocPoint: string;
     underlyingAssetName: string;
     aTokenName: string;
     aTokenSymbol: string;
@@ -90,7 +91,7 @@ export const initReservesByHelper = async (
       console.log(`- Skipping init of ${symbol} due token address is not set at markets config`);
       continue;
     }
-    const { strategy, aTokenImpl, reserveDecimals } = params;
+    const { strategy, aTokenImpl, reserveDecimals, allocPoint } = params;
     const {
       optimalUtilizationRate,
       baseVariableBorrowRate,
@@ -137,9 +138,10 @@ export const initReservesByHelper = async (
       underlyingAsset: tokenAddresses[symbol],
       treasury: treasuryAddress,
       incentivesController: incentivesController,
+      allocPoint,
       underlyingAssetName: symbol,
       aTokenName: `${aTokenNamePrefix} ${symbol}`,
-      aTokenSymbol: `a${symbolPrefix}${symbol}`,
+      aTokenSymbol: `u${symbolPrefix}${symbol}`,
       variableDebtTokenName: `${variableDebtTokenNamePrefix} ${symbolPrefix}${symbol}`,
       variableDebtTokenSymbol: `variableDebt${symbolPrefix}${symbol}`,
       stableDebtTokenName: `${stableDebtTokenNamePrefix} ${symbol}`,

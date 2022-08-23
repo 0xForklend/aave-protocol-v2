@@ -1,15 +1,15 @@
 // import BigNumber from 'bignumber.js';
 // import { oneRay } from '../../helpers/constants';
-import { eContractid, IReserveParams } from '../../helpers/types';
-import { 
-  rateStrategyStableOne,
-  rateStrategyStableTwo,
-  rateStrategyStableThree,
-  rateStrategyWETH,
+import { IReserveParams, eContractid } from '../../helpers/types';
+import {
   rateStrategyAAVE,
+  rateStrategyStableOne,
+  rateStrategyStableThree,
+  rateStrategyStableTwo,
   rateStrategyVolatileOne,
-  rateStrategyVolatileTwo,
   rateStrategyVolatileThree,
+  rateStrategyVolatileTwo,
+  rateStrategyWETH,
 } from './rateStrategies';
 
 export const strategyDAI: IReserveParams = {
@@ -21,7 +21,8 @@ export const strategyDAI: IReserveParams = {
   stableBorrowRateEnabled: true,
   reserveDecimals: '18',
   aTokenImpl: eContractid.AToken,
-  reserveFactor: '1000'
+  reserveFactor: '1000',
+  allocPoint: '1',
 };
 
 export const strategyUSDC: IReserveParams = {
@@ -33,7 +34,8 @@ export const strategyUSDC: IReserveParams = {
   stableBorrowRateEnabled: true,
   reserveDecimals: '6',
   aTokenImpl: eContractid.AToken,
-  reserveFactor: '1000'
+  reserveFactor: '1000',
+  allocPoint: '1',
 };
 
 export const strategyUSDT: IReserveParams = {
@@ -45,7 +47,8 @@ export const strategyUSDT: IReserveParams = {
     stableBorrowRateEnabled: true,
     reserveDecimals: '6',
     aTokenImpl: eContractid.AToken,
-    reserveFactor: '1000'
+    reserveFactor: '1000',
+    allocPoint: '1',
 };
 
 export const strategyWETH: IReserveParams = {
@@ -57,7 +60,8 @@ export const strategyWETH: IReserveParams = {
   stableBorrowRateEnabled: true,
   reserveDecimals: '18',
   aTokenImpl: eContractid.AToken,
-  reserveFactor: '1000'
+  reserveFactor: '1000',
+  allocPoint: '1',
 };
 
 export const strategyWBTC: IReserveParams = {
@@ -69,7 +73,8 @@ export const strategyWBTC: IReserveParams = {
   stableBorrowRateEnabled: true,
   reserveDecimals: '8',
   aTokenImpl: eContractid.AToken,
-  reserveFactor: '2000'
+  reserveFactor: '2000',
+  allocPoint: '1',
 };
 
 export const strategySTAKE: IReserveParams = {
@@ -81,5 +86,6 @@ export const strategySTAKE: IReserveParams = {
   stableBorrowRateEnabled: true,
   reserveDecimals: '18',
   aTokenImpl: eContractid.AToken,
-  reserveFactor: '2000'
+  reserveFactor: '2000',
+  allocPoint: '1',
 };

@@ -45,7 +45,7 @@ export const NETWORKS_RPC_URL: iParamsPerNetwork<string> = {
   // [eEthereumNetwork.main]: ALCHEMY_KEY
   //   ? `https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_KEY}`
   //   : `https://mainnet.infura.io/v3/${INFURA_KEY}`,
-  [eEthereumNetwork.main]: 'https://rpc.tenderly.co/fork/c9ae11d4-cd43-49fe-a04d-ff9b4d2c24a2',
+  [eEthereumNetwork.main]: 'https://rpc.tenderly.co/fork/37ee0ab4-2320-482c-bd86-10a2b667f178',
   [eEthereumNetwork.coverage]: 'http://localhost:8555',
   [eEthereumNetwork.hardhat]: 'http://localhost:8545',
   [eEthereumNetwork.buidlerevm]: 'http://localhost:8545',
