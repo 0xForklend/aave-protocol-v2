@@ -83,6 +83,9 @@ export const MOCK_CHAINLINK_AGGREGATORS_PRICES = {
   // WBTC: oneEther.multipliedBy('47.332685').toFixed(),
   SPELL: oneEther.multipliedBy('0.00367714136416').toFixed(),
   SIFU: oneEther.multipliedBy('22.407436').toFixed(),
+  MIM: oneEther.multipliedBy('22.407436').toFixed(),
+  LUSD: oneEther.multipliedBy('22.407436').toFixed(),
+  CRV: oneEther.multipliedBy('22.407436').toFixed(),
   CVX_WETH: oneEther.multipliedBy('22.407436').toFixed(),
 };
 

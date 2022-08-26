@@ -21,6 +21,7 @@ export const strategyDAI: IReserveParams = {
   reserveDecimals: '18',
   aTokenImpl: eContractid.AToken,
   reserveFactor: '1000',
+  allocPoint: '1',
 };
 
 export const strategyUSDC: IReserveParams = {
@@ -33,6 +34,7 @@ export const strategyUSDC: IReserveParams = {
   reserveDecimals: '6',
   aTokenImpl: eContractid.AToken,
   reserveFactor: '1000',
+  allocPoint: '1',
 };
 
 export const strategyUSDT: IReserveParams = {
@@ -45,6 +47,7 @@ export const strategyUSDT: IReserveParams = {
   reserveDecimals: '6',
   aTokenImpl: eContractid.AToken,
   reserveFactor: '1000',
+  allocPoint: '1',
 };
 
 export const strategyWETH: IReserveParams = {
@@ -57,6 +60,7 @@ export const strategyWETH: IReserveParams = {
   reserveDecimals: '18',
   aTokenImpl: eContractid.AToken,
   reserveFactor: '1000',
+  allocPoint: '1',
 };
 
 export const strategyWBTC: IReserveParams = {
@@ -69,6 +73,7 @@ export const strategyWBTC: IReserveParams = {
   reserveDecimals: '8',
   aTokenImpl: eContractid.AToken,
   reserveFactor: '2000',
+  allocPoint: '1',
 };
 
 export const strategyMATIC: IReserveParams = {
@@ -81,6 +86,7 @@ export const strategyMATIC: IReserveParams = {
   reserveDecimals: '18',
   aTokenImpl: eContractid.AToken,
   reserveFactor: '2000',
+  allocPoint: '1',
 };
 
 export const strategyAAVE: IReserveParams = {
@@ -93,6 +99,7 @@ export const strategyAAVE: IReserveParams = {
   reserveDecimals: '18',
   aTokenImpl: eContractid.AToken,
   reserveFactor: '0',
+  allocPoint: '1',
 };
 
 export const strategyFRAX: IReserveParams = {
@@ -105,6 +112,7 @@ export const strategyFRAX: IReserveParams = {
   reserveDecimals: '18',
   aTokenImpl: eContractid.AToken,
   reserveFactor: '3500',
+  allocPoint: '1',
 };
 
 export const strategyWFTM: IReserveParams = {
@@ -117,6 +125,7 @@ export const strategyWFTM: IReserveParams = {
   reserveDecimals: '18',
   aTokenImpl: eContractid.AToken,
   reserveFactor: '1000',
+  allocPoint: '1',
 };
 
 export const strategySPELL: IReserveParams = {
@@ -129,4 +138,5 @@ export const strategySPELL: IReserveParams = {
   reserveDecimals: '18',
   aTokenImpl: eContractid.AToken,
   reserveFactor: '3500',
+  allocPoint: '1',
 };
